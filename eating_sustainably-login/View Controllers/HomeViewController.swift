@@ -2,17 +2,28 @@
 //  HomeViewController.swift
 //  eating_sustainably-login
 //
-//  Created by user190188 on 4/21/21.
+//  Created by user189360 on 4/21/21.
 //
 
 import UIKit
 
 class HomeViewController: UIViewController {
 
+
+
+    @IBOutlet weak var btnValidar: UIButton!
+    var tipoUsuario = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Feed general"
 
         // Do any additional setup after loading the view.
+        
+        if (tipoUsuario != 0)
+        {
+            btnValidar.isHidden = true
+        }
+        
     }
     
 
@@ -25,5 +36,7 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+
 
 }

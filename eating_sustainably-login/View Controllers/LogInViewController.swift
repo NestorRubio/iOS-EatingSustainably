@@ -24,6 +24,8 @@ class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Iniciar sesión"
+        bttnInicioSesion.layer.cornerRadius = 8
 
         // Do any additional setup after loading the view.
         setUpElements()
@@ -55,10 +57,31 @@ class LogInViewController: UIViewController {
                 self.lbError.alpha = 1
             }else{
                 
-                let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
-                
-                self.view.window?.rootViewController = homeViewController
-                self.view.window?.makeKeyAndVisible()
+                Constantes.db.collection("usersNoValidados").document(result?.user.uid ?? "ERROR").getDocument {
+                (documentSnapshot, error) in
+                        if let document = documentSnapshot, error == nil {
+                            if let i = document.get("email") as? String{
+                                if (i == email){
+                                    self.lbError.text = "Usuario pendiente de validar"
+                                }
+                                else{
+                                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
+                                    
+                                    self.view.window?.rootViewController = homeViewController
+                                    self.view.window?.makeKeyAndVisible()
+                                }
+                            }
+                            /////////
+                            else{
+                                let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
+                                
+                                
+                                
+                                self.view.window?.rootViewController = homeViewController
+                                self.view.window?.makeKeyAndVisible()
+                            }
+                        }
+                    }
             }
         }
     }
