@@ -9,11 +9,8 @@ import UIKit
 
 class Registro3ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
-    var nombre : String?
-    var apellido : String?
-    var email  : String?
+
     var contraseña : String?
-    var tipoUsuario : Int?
     var nombreNegocio: String?
     var informacion: String?
     
@@ -21,7 +18,7 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
 
     @IBOutlet weak var tvInfNegocio: UITextView!
     
-    @IBOutlet weak var lbError: UILabel!
+    @IBOutlet weak var lbValidar: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -46,10 +43,8 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
 
         tvInfNegocio.text = placeholder
         tvInfNegocio.textColor = UIColor.lightGray
-        
-        lbError.text = ""
-        
-        categorias = definirCategorias(usuario:self.tipoUsuario!)
+                
+        categorias = definirCategorias(usuario:Constantes.usuario.m_tipo!)
     }
     
     
@@ -111,12 +106,13 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
             tvInfNegocio.text = ""
         }
         if (tvInfNegocio.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""){
-            lbError.text = "Introduce el proceso sustentable del negocio"
+            
+            self.present(mostrarMsj(error: Constantes.PROCESO), animated: true, completion: nil)
             ejecutarSegue = false
         }
         if (self.categoriasSeleccionadas.isEmpty)
         {
-            lbError.text = "Selecciona al menos una categoría"
+            self.present(mostrarMsj(error: Constantes.CATEGORIA), animated: true, completion: nil)
             ejecutarSegue = false
         }
         return ejecutarSegue
@@ -129,17 +125,13 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
         // Pass the selected object to the new view controller.
         if segue.identifier == "registro3_4"{
             let viewR4 = segue.destination as! Registro4ViewController
-            viewR4.nombre = self.nombre
-            viewR4.apellido = self.apellido
-            viewR4.email = self.email
+
             viewR4.contraseña = self.contraseña
-            viewR4.tipoUsuario = self.tipoUsuario
             viewR4.nombreNegocio = self.nombreNegocio
             viewR4.informacion = self.informacion
             viewR4.sustentable = tvInfNegocio.text!
             viewR4.categorias = self.categoriasSeleccionadas
 
-            lbError.text = ""
         }
         
     }

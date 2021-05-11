@@ -7,10 +7,11 @@
 
 import UIKit
 
-class ListaValidarViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class ListaValidarViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    var listaUsuarios : [String] = []
+    var listaUsuarios  = ["holaaa", "ho"]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,7 @@ class ListaValidarViewController: UIViewController,UITableViewDelegate, UITableV
                     for document in querySnapshot!.documents {
                         self.listaUsuarios.append((document.get("email")) as! String)
                     }
+                    self.tableView.reloadData()
                 }
         }
         
@@ -44,6 +46,7 @@ class ListaValidarViewController: UIViewController,UITableViewDelegate, UITableV
             let cell = tableView.dequeueReusableCell(withIdentifier: "celda")!
             //tituli
     //ETIQUETA PARA EL TITULO
+        
             cell.textLabel?.text = listaUsuarios[indexPath.row]
             //subtitulo
             return cell

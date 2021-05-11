@@ -11,7 +11,7 @@ class HomeViewController: UIViewController {
 
 
 
-    @IBOutlet weak var btnValidar: UIButton!
+    @IBOutlet weak var btnValidar: UIBarButtonItem!
     var tipoUsuario = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,8 @@ class HomeViewController: UIViewController {
         
         if (tipoUsuario != 0)
         {
-            btnValidar.isHidden = true
+            btnValidar.isEnabled = true
+            //btnValidar.isHidden = true
         }
         
     }

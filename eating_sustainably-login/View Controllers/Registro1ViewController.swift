@@ -25,9 +25,11 @@ class Registro1ViewController: UIViewController {
     
     @IBOutlet weak var bttnRegistro: UIButton!
     
-    @IBOutlet weak var lbError: UILabel!
+    @IBOutlet weak var lbValidar: UILabel!
     
     var tipoUsuario:Int = 0
+    var validar: Bool = false
+    var email: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,131 +38,102 @@ class Registro1ViewController: UIViewController {
         title = "Información básica"
         bttnRegistro.layer.cornerRadius = 8
         
+        //variable auxiliar para las ids
+        var optIds : [Int] = []
         //bucle para tipo de usuarios que hay, el 0 es admin lo saltamos
         for i in 1 ... Constantes.USER_TOTAL{
             dropDownUserType.optionArray.append(getUserStringName(users: i))
+            optIds.append(i)
         }
-        dropDownUserType.optionIds = [1,2,3,4,5]
+        dropDownUserType.optionIds = optIds
 
         dropDownUserType.didSelect{(selectedText , index ,id) in
             self.tipoUsuario = id
         }
-        
-        setUpElements()
+        if (validar == false){
+            lbValidar.alpha = 0
+        }
+        else{
+            lbValidar.alpha = 1
+        }
     }
-    
-    func setUpElements(){
-        lbError.alpha = 0
-    }
-    
 
-    func validateFileds() -> String? {
+
+    func validateFileds() -> Int? {
         
         //revisar que todos loc campos esten llenos
-        if tfNombre.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            tfApellido.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            self.tipoUsuario == 0 {
-            
-            return "Favor de llenar todos los campos"
+        if (tfNombre.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || tfApellido.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "") {
+            return Constantes.USERNAME
         }
-        
-        if (isValidEmail(tfEmail.text ?? "") == false){
-            return "Formato de e-mail incorrecto"
+        if (tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfEmail.text ?? "", tipo: Constantes.MAIL)) {
+            return Constantes.MAIL
         }
-        //revisar que contraseña sea segura
-        let cleanedPassword = tfPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        
+        if (tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfPassword.text ?? "", tipo: Constantes.PASSWORD)) {
+            return Constantes.PASSWORD
+        }
+        if (tipoUsuario <= Constantes.USER_ADMIN || tipoUsuario >= Constantes.USER_TOTAL) {
+            return Constantes.TIPO_USER
+        }
         return nil
-    }
-    /*
-    @IBAction func registroTap(_ sender: Any) {
-        
-        //validar campos
-        let error = validateFileds()
-        
-        if (error != nil){
-            showError(error!)
-        }else{
-            //limpiar datos
-            let nombre = tfNombre.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let apellido = tfApellido.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = tfEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = tfPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            
-            
-            Constantes.db.collection("users").document(email).getDocument {
-            (documentSnapshot, error) in
-                    if let document = documentSnapshot, error == nil {
-                            self.showError("Error: el email ya está registrado")
-
-                            }
-                            
-                        }
-            
-            /*
-            //crear usuario
-            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                if err != nil{
-                    //Error al crear usuario
-                    self.showError("Error al crear usuario")
-                }
-            }*/
-        }
-        //crear usuario
-    }
-    */
-    func showError(_ message:String){
-        lbError.text = message
-        lbError.alpha = 1
     }
     
     func transitionToHome(){
         let homeViewController = storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
-        
         view.window?.rootViewController = homeViewController
         view.window?.makeKeyAndVisible()
     }
-    
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
 
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
-    }
-    
+
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+       
+        let errorDatos = validateFileds()
         
-        let error = validateFileds()
-        var ejecutarSegue = true
-        
-        if (error != nil){
-            showError(error!)
-            ejecutarSegue=false
-        }else{
+        //error en un campo introducido
+        if (errorDatos != nil){
+            present(mostrarMsj(error: errorDatos!), animated: true, completion: nil)
+        }
+        else{
             //limpiar datos
-            let nombre = tfNombre.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let apellido = tfApellido.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = tfEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = tfPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-
             
-            Constantes.db.collection("users").document(tfEmail.text!).getDocument {
-            (documentSnapshot, error) in
-                    if let document = documentSnapshot, error == nil {
-                        ejecutarSegue=false
-                        self.showError("Error: el email ya está registrado")
+            //creamos usuario firebase
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if error != nil, let error = error as NSError?{
+                    if let errorCode = AuthErrorCode(rawValue: error.code) {
+                        switch errorCode {
+                        case .invalidEmail:
+                            self.present(mostrarMsj(error: Constantes.FIREBASE_MAIL), animated: true, completion: nil)
+                            break
+                        case .emailAlreadyInUse:
+                            self.present(mostrarMsj(error: Constantes.FIREBASE_MAIL_REPETIDO), animated: true, completion: nil)
+                            break
+                        case .weakPassword:
+                            self.present(mostrarMsj(error: Constantes.FIREBASE_PASSWORD), animated: true, completion: nil)
+                            break
+                        default:
+                            self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
+                            break
+                        }
                     }
                     else{
-                        ejecutarSegue=true
+                        self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                     }
                 }
-            
+                else {
+                    //el registro en firebase es correcto guardamos usuario
+                    Constantes.usuario = Usuario(nombre: self.tfNombre.text!, apellido: self.tfApellido.text!, email: self.tfEmail.text!, tipo: self.tipoUsuario, uid: "")
+                    //eliminamos cuenta de firebase hasta finalizar el proceso
+                    Constantes.auth.currentUser?.delete { error in
+                        if error == nil {
+                            //llamamos al segue si todo es correcto
+                            self.performSegue(withIdentifier: "registro1_2", sender: self)
+                        }
+                    }
+                }
+            }
         }
-        return ejecutarSegue
-
+        return false
     }
 
     
@@ -169,14 +142,7 @@ class Registro1ViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "registro1_2"{
             let viewR2 = segue.destination as! Registro2ViewController
-            viewR2.nombre = tfNombre.text!
-            viewR2.apellido = tfApellido.text!
-            viewR2.email = tfEmail.text!
             viewR2.contraseña = tfPassword.text!
-            viewR2.tipoUsuario = self.tipoUsuario
-            self.showError("")
-            
         }
-        
     }
 }

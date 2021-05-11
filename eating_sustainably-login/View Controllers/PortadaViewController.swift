@@ -24,6 +24,14 @@ class PortadaViewController: UIViewController {
         btnIniciarSesion.layer.cornerRadius = 8
         btnRegistrarse.layer.cornerRadius = 8
         
+        if (Constantes.auth.currentUser != nil){
+            let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
+            self.view.window?.rootViewController = homeViewController
+            self.view.window?.makeKeyAndVisible()            
+        }
+
+        
+        
     }
 
 

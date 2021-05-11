@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		088A033846E9DB16B9C71EA2 /* Pods_eating_sustainably_login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */; };
-		7293D59D2631A05E00E3F84F /* ListaValidarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7293D59C2631A05E00E3F84F /* ListaValidarViewController.swift */; };
+		7239ED8D26469EE900670F16 /* ListaValidarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */; };
+		727B6FC726461ADA00D73176 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727B6FC626461ADA00D73176 /* Usuario.swift */; };
 		72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FC5263134BB0053C1F2 /* HomeViewController.swift */; };
 		72973FCF263149590053C1F2 /* Registro2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FCE263149590053C1F2 /* Registro2ViewController.swift */; };
 		72973FD2263149660053C1F2 /* Registro3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FD1263149660053C1F2 /* Registro3ViewController.swift */; };
@@ -27,7 +28,8 @@
 
 /* Begin PBXFileReference section */
 		5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eating_sustainably_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7293D59C2631A05E00E3F84F /* ListaValidarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaValidarViewController.swift; sourceTree = "<group>"; };
+		7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaValidarTableViewController.swift; sourceTree = "<group>"; };
+		727B6FC626461ADA00D73176 /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		72973FC5263134BB0053C1F2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		72973FCE263149590053C1F2 /* Registro2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro2ViewController.swift; sourceTree = "<group>"; };
 		72973FD1263149660053C1F2 /* Registro3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro3ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				A3906EE1263112AD007271D2 /* Constantes.swift */,
+				727B6FC626461ADA00D73176 /* Usuario.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -137,7 +140,7 @@
 				72973FCE263149590053C1F2 /* Registro2ViewController.swift */,
 				72973FD1263149660053C1F2 /* Registro3ViewController.swift */,
 				72973FD4263149750053C1F2 /* Registro4ViewController.swift */,
-				7293D59C2631A05E00E3F84F /* ListaValidarViewController.swift */,
+				7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -261,10 +264,11 @@
 				A3E6B8BC2630F07900CDA0E6 /* PortadaViewController.swift in Sources */,
 				72973FD5263149750053C1F2 /* Registro4ViewController.swift in Sources */,
 				72973FD2263149660053C1F2 /* Registro3ViewController.swift in Sources */,
-				7293D59D2631A05E00E3F84F /* ListaValidarViewController.swift in Sources */,
+				7239ED8D26469EE900670F16 /* ListaValidarTableViewController.swift in Sources */,
 				A3E6B8B82630F07900CDA0E6 /* AppDelegate.swift in Sources */,
 				A3E6B8CD2630F0A800CDA0E6 /* Registro1ViewController.swift in Sources */,
 				A3E6B8D02630F0BE00CDA0E6 /* LogInViewController.swift in Sources */,
+				727B6FC726461ADA00D73176 /* Usuario.swift in Sources */,
 				A3E6B8BA2630F07900CDA0E6 /* SceneDelegate.swift in Sources */,
 				72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */,
 				A3906EE2263112AD007271D2 /* Constantes.swift in Sources */,

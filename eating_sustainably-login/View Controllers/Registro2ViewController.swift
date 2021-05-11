@@ -28,20 +28,21 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var btnContinuar: UIButton!
     
-    @IBOutlet weak var lbError: UILabel!
     
+    @IBOutlet weak var lbValidar: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Información Adicional"
         
-        //ocultamos los cambos segun el tipo de usuario
-        if (tipoUsuario! == Constantes.USER_CONSUMIDOR || tipoUsuario! == Constantes.USER_INGENIERO){
+        //ocultamos los campos segun el tipo de usuario
+        if (Constantes.usuario.m_tipo == Constantes.USER_CONSUMIDOR || Constantes.usuario.m_tipo == Constantes.USER_INGENIERO){
             btnVideo.isHidden = true
             tfNombreNegocio.isHidden = true
             placeholder = "Información personal"
             btnContinuar.setTitle("Registrarse", for: .normal)
         }
+        
         tfInformacion.delegate = self
         self.tfInformacion.layer.borderColor = UIColor.lightGray.cgColor
         tfInformacion.layer.borderWidth = 1.0
@@ -49,11 +50,7 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
 
         tfInformacion.text = placeholder
         tfInformacion.textColor = UIColor.lightGray
-        
-        lbError.text = ""
-        
     }
-    
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -71,39 +68,61 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
     }
     
     // MARK: - Navigation
-
-
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
-        var ejecutarSegue = true
-        if (tipoUsuario! == Constantes.USER_CONSUMIDOR || tipoUsuario! == Constantes.USER_INGENIERO){
-            ejecutarSegue = false
-
-            Auth.auth().createUser(withEmail: self.email!, password: self.contraseña!){
-                
-                    (result, error) in
-                    if let result = result, error == nil{
-
-                        Constantes.db.collection("users").document(result.user.uid).setData(["nombre": self.nombre, "apellido":self.apellido, "email":self.email, "tipoUsuario":self.tipoUsuario, "informacion": self.tfInformacion.text ?? ""])
-
-                        let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
-                        self.view.window?.rootViewController = homeViewController
-                        self.view.window?.makeKeyAndVisible()
-                        
+        if (Constantes.usuario.m_tipo == Constantes.USER_CONSUMIDOR || Constantes.usuario.m_tipo == Constantes.USER_INGENIERO){
+            
+            //creamos usuario firebase
+            Auth.auth().createUser(withEmail: Constantes.usuario.m_email!, password: self.contraseña!) { result, error in
+                if error != nil, let error = error as NSError?{
+                    if let errorCode = AuthErrorCode(rawValue: error.code) {
+                        switch errorCode {
+                        case .invalidEmail:
+                            self.present(mostrarMsj(error: Constantes.FIREBASE_MAIL), animated: true, completion: nil)
+                            break
+                        case .emailAlreadyInUse:
+                            self.present(mostrarMsj(error: Constantes.FIREBASE_MAIL_REPETIDO), animated: true, completion: nil)
+                            break
+                        case .weakPassword:
+                            self.present(mostrarMsj(error: Constantes.FIREBASE_PASSWORD), animated: true, completion: nil)
+                            break
+                        default:
+                            self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
+                            break
+                        }
                     }
                     else{
-                        self.lbError.text = "Error al registrar la cuenta"
+                        self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                     }
-
+                }
+                else {
+                    //guardamos id
+                    Constantes.usuario.m_uid = result!.user.uid
+                    
+                    //limpiamos placeholder si no ha puesto nada
+                    if (self.tfInformacion.text == self.placeholder){
+                        self.tfInformacion.text = ""
+                    }
+                    
+                    //el registro en firebase es correcto guardamos usuario en base de datos
+                    Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "apellido":Constantes.usuario.m_apellido!, "email":Constantes.usuario.m_email!, "tipoUsuario":Constantes.usuario.m_tipo!, "informacion": self.tfInformacion.text!])
+                    
+                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
+                    self.view.window?.rootViewController = homeViewController
+                    self.view.window?.makeKeyAndVisible()
+                }
             }
         }
         else{
             if (tfNombreNegocio.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""){
-                ejecutarSegue = false
-                lbError.text = "Introduce el nombre del negocio"
+                self.present(mostrarMsj(error: Constantes.NOMBRE_NEGOCIO), animated: true, completion: nil)
+            }
+            else{
+                //es usuario vendedor y no hay errores podemos continuar
+                return true
             }
         }
-        return ejecutarSegue
+        return false
 
     }
 
@@ -113,18 +132,13 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
         // Pass the selected object to the new view controller.
         if segue.identifier == "registro2_3"{
             let viewR3 = segue.destination as! Registro3ViewController
-            viewR3.nombre = self.nombre
-            viewR3.apellido = self.apellido
-            viewR3.email = self.email
             viewR3.contraseña = self.contraseña
-            viewR3.tipoUsuario = self.tipoUsuario
             viewR3.nombreNegocio = tfNombreNegocio.text!
             
             if (tfInformacion.text == placeholder){
                 tfInformacion.text = ""
             }
             viewR3.informacion = tfInformacion.text!
-            lbError.text = ""
         }
         
     }
