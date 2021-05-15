@@ -8,12 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		088A033846E9DB16B9C71EA2 /* Pods_eating_sustainably_login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */; };
+		720FFFE9264FA6DA00A452AE /* BuscadorFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */; };
+		720FFFED264FAA2800A452AE /* BloquearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFEC264FAA2800A452AE /* BloquearViewController.swift */; };
 		7239ED8D26469EE900670F16 /* ListaValidarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */; };
+		726E4779264CB118007E60E5 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726E4778264CB118007E60E5 /* PerfilViewController.swift */; };
+		726E4782264CBC3A007E60E5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726E4781264CBC3A007E60E5 /* SplashViewController.swift */; };
+		72714639264C8580004D3067 /* RecuperarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72714638264C8580004D3067 /* RecuperarViewController.swift */; };
 		727B6FC726461ADA00D73176 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727B6FC626461ADA00D73176 /* Usuario.swift */; };
+		728B5D37264F529700C2EAF0 /* CodigoQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728B5D36264F529700C2EAF0 /* CodigoQRViewController.swift */; };
 		72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FC5263134BB0053C1F2 /* HomeViewController.swift */; };
 		72973FCF263149590053C1F2 /* Registro2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FCE263149590053C1F2 /* Registro2ViewController.swift */; };
 		72973FD2263149660053C1F2 /* Registro3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FD1263149660053C1F2 /* Registro3ViewController.swift */; };
 		72973FD5263149750053C1F2 /* Registro4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FD4263149750053C1F2 /* Registro4ViewController.swift */; };
+		72AB7A41264FB0C0006E39A2 /* BuscarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB7A40264FB0C0006E39A2 /* BuscarViewController.swift */; };
+		72AB7A44264FB109006E39A2 /* EliminarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB7A43264FB109006E39A2 /* EliminarViewController.swift */; };
+		72AB7A4C264FB169006E39A2 /* PreguntasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB7A4B264FB169006E39A2 /* PreguntasViewController.swift */; };
+		72AB7A4F264FB1B8006E39A2 /* ModificarPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB7A4E264FB1B8006E39A2 /* ModificarPasswordViewController.swift */; };
 		A324981E2630FB5300E03536 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A324981D2630FB5300E03536 /* GoogleService-Info.plist */; };
 		A3906EE2263112AD007271D2 /* Constantes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3906EE1263112AD007271D2 /* Constantes.swift */; };
 		A3E6B8B82630F07900CDA0E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E6B8B72630F07900CDA0E6 /* AppDelegate.swift */; };
@@ -28,12 +38,22 @@
 
 /* Begin PBXFileReference section */
 		5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eating_sustainably_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuscadorFeedViewController.swift; sourceTree = "<group>"; };
+		720FFFEC264FAA2800A452AE /* BloquearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloquearViewController.swift; sourceTree = "<group>"; };
 		7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaValidarTableViewController.swift; sourceTree = "<group>"; };
+		726E4778264CB118007E60E5 /* PerfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
+		726E4781264CBC3A007E60E5 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		72714638264C8580004D3067 /* RecuperarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperarViewController.swift; sourceTree = "<group>"; };
 		727B6FC626461ADA00D73176 /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
+		728B5D36264F529700C2EAF0 /* CodigoQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodigoQRViewController.swift; sourceTree = "<group>"; };
 		72973FC5263134BB0053C1F2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		72973FCE263149590053C1F2 /* Registro2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro2ViewController.swift; sourceTree = "<group>"; };
 		72973FD1263149660053C1F2 /* Registro3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro3ViewController.swift; sourceTree = "<group>"; };
 		72973FD4263149750053C1F2 /* Registro4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro4ViewController.swift; sourceTree = "<group>"; };
+		72AB7A40264FB0C0006E39A2 /* BuscarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuscarViewController.swift; sourceTree = "<group>"; };
+		72AB7A43264FB109006E39A2 /* EliminarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EliminarViewController.swift; sourceTree = "<group>"; };
+		72AB7A4B264FB169006E39A2 /* PreguntasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreguntasViewController.swift; sourceTree = SOURCE_ROOT; };
+		72AB7A4E264FB1B8006E39A2 /* ModificarPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModificarPasswordViewController.swift; path = "eating_sustainably-login/ModificarPasswordViewController.swift"; sourceTree = SOURCE_ROOT; };
 		86C90C6502879390C144C31F /* Pods-eating_sustainably-login.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eating_sustainably-login.debug.xcconfig"; path = "Target Support Files/Pods-eating_sustainably-login/Pods-eating_sustainably-login.debug.xcconfig"; sourceTree = "<group>"; };
 		A324981D2630FB5300E03536 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3906EE1263112AD007271D2 /* Constantes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constantes.swift; sourceTree = "<group>"; };
@@ -133,14 +153,24 @@
 		A3E6B8D52630F0DA00CDA0E6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				72AB7A4E264FB1B8006E39A2 /* ModificarPasswordViewController.swift */,
+				72AB7A4B264FB169006E39A2 /* PreguntasViewController.swift */,
+				72AB7A43264FB109006E39A2 /* EliminarViewController.swift */,
+				72AB7A40264FB0C0006E39A2 /* BuscarViewController.swift */,
 				A3E6B8BB2630F07900CDA0E6 /* PortadaViewController.swift */,
 				A3E6B8CF2630F0BE00CDA0E6 /* LogInViewController.swift */,
 				72973FC5263134BB0053C1F2 /* HomeViewController.swift */,
+				72714638264C8580004D3067 /* RecuperarViewController.swift */,
 				A3E6B8CC2630F0A800CDA0E6 /* Registro1ViewController.swift */,
 				72973FCE263149590053C1F2 /* Registro2ViewController.swift */,
 				72973FD1263149660053C1F2 /* Registro3ViewController.swift */,
 				72973FD4263149750053C1F2 /* Registro4ViewController.swift */,
 				7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */,
+				726E4778264CB118007E60E5 /* PerfilViewController.swift */,
+				726E4781264CBC3A007E60E5 /* SplashViewController.swift */,
+				728B5D36264F529700C2EAF0 /* CodigoQRViewController.swift */,
+				720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */,
+				720FFFEC264FAA2800A452AE /* BloquearViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -260,17 +290,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				728B5D37264F529700C2EAF0 /* CodigoQRViewController.swift in Sources */,
+				72AB7A44264FB109006E39A2 /* EliminarViewController.swift in Sources */,
 				72973FCF263149590053C1F2 /* Registro2ViewController.swift in Sources */,
 				A3E6B8BC2630F07900CDA0E6 /* PortadaViewController.swift in Sources */,
+				726E4782264CBC3A007E60E5 /* SplashViewController.swift in Sources */,
+				720FFFED264FAA2800A452AE /* BloquearViewController.swift in Sources */,
 				72973FD5263149750053C1F2 /* Registro4ViewController.swift in Sources */,
 				72973FD2263149660053C1F2 /* Registro3ViewController.swift in Sources */,
+				72714639264C8580004D3067 /* RecuperarViewController.swift in Sources */,
+				72AB7A41264FB0C0006E39A2 /* BuscarViewController.swift in Sources */,
 				7239ED8D26469EE900670F16 /* ListaValidarTableViewController.swift in Sources */,
 				A3E6B8B82630F07900CDA0E6 /* AppDelegate.swift in Sources */,
+				72AB7A4F264FB1B8006E39A2 /* ModificarPasswordViewController.swift in Sources */,
+				720FFFE9264FA6DA00A452AE /* BuscadorFeedViewController.swift in Sources */,
+				72AB7A4C264FB169006E39A2 /* PreguntasViewController.swift in Sources */,
 				A3E6B8CD2630F0A800CDA0E6 /* Registro1ViewController.swift in Sources */,
 				A3E6B8D02630F0BE00CDA0E6 /* LogInViewController.swift in Sources */,
 				727B6FC726461ADA00D73176 /* Usuario.swift in Sources */,
 				A3E6B8BA2630F07900CDA0E6 /* SceneDelegate.swift in Sources */,
 				72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */,
+				726E4779264CB118007E60E5 /* PerfilViewController.swift in Sources */,
 				A3906EE2263112AD007271D2 /* Constantes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

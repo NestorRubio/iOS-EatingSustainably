@@ -8,17 +8,23 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 
 struct Constantes {
     struct Storyboard {
         static let homeViewController = "HomeVC"
+        static let portadaViewController = "PortadaVC"
+        static let perfilViewController = "PerfilVC"
     }
     
     static let  NOMBRE_APP = "sustentax"
     
     static let db = Firestore.firestore()
     static let auth = Auth.auth()
+    static let storage = Storage.storage().reference()
     static var usuario = Usuario()
+    static var load = false
+
     
     
     //TIPO USUARIOS
@@ -45,11 +51,22 @@ struct Constantes {
     static let PROCESO = 11
     static let CATEGORIA = 12
     static let PERMISOS_LOC = 13
+    static let VALIDAR = 14
+    static let RECUPERAR = 15
+    static let VALIDAR_VACIO = 16
+    static let VALIDAR_OK = 17
+    static let QR_GENERAR = 18
+    static let ERROR_FOTO_FB = 19
+    static let ERROR_FOTO_ST = 20
+    static let CERRAR_OK = 21
+    static let ERROR_CERRAR = 22
+
+
     static let DEFAULT = 99
     
     //PATRONES DATOS
     static let EMAIL_PATTERN = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-    static let PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+    static let PASSWORD_PATTERN = "^(?=.*[A-Z])(?=.*[!@#$&*-])(?=.*[0-9])(?=.*[a-z]).{8,}$"
     static let PHONE_PATTERN = "^(\\+52|0052|52)?[0-9]{10}$"
 
 }
@@ -96,7 +113,7 @@ func definirCategorias(usuario: Int)-> [String]{
     }
 }
 
-func mostrarMsj(error: Int) -> UIAlertController {
+func mostrarMsj(error: Int, hand : ((UIAlertAction)->Void)? = nil) -> UIAlertController {
     var titulo : String = "Error"
     var mensaje : String = ""
     
@@ -142,7 +159,38 @@ func mostrarMsj(error: Int) -> UIAlertController {
         mensaje = "Selecciona al menos una categoría"
         break
     case Constantes.PERMISOS_LOC:
-        mensaje = "Habilita los permisos de localización para finalizar el registro"
+        mensaje = "Habilita los permisos de ubicación para finalizar el registro"
+        break
+    case Constantes.VALIDAR:
+        mensaje = "Usuario pendiente de ser validado"
+        break
+    case Constantes.RECUPERAR:
+        titulo = "Proceso completado"
+        mensaje = "Se ha enviado un e-mail para reestablecer la contraseña"
+        break
+    case Constantes.VALIDAR_VACIO:
+        titulo = "Aviso"
+        mensaje = "No hay usuarios pendientes de validar"
+        break
+    case Constantes.VALIDAR_OK:
+        titulo = "Proceso completado"
+        mensaje = "El usuario ha sido validado con éxito"
+        break
+    case Constantes.QR_GENERAR:
+        mensaje = "No se ha podido generar el código QR"
+        break
+    case Constantes.ERROR_FOTO_FB:
+        mensaje = "No se ha podido guardar la foto"
+        break
+    case Constantes.ERROR_FOTO_ST:
+        mensaje = "No se ha podido subir la foto, vuelve a intentarlo"
+        break
+    case Constantes.CERRAR_OK:
+        titulo = "Sesión cerrada"
+        mensaje = "Se ha cerrado sesión de forma segura"
+        break
+    case Constantes.ERROR_CERRAR:
+        mensaje = "No se ha podido cerrar sesión correctamente"
         break
     case Constantes.DEFAULT:
         mensaje = "Error al procesar la operación, vuelve a intentarlo"
@@ -153,7 +201,7 @@ func mostrarMsj(error: Int) -> UIAlertController {
     }
     
     let alerta = UIAlertController(title: titulo, message: mensaje, preferredStyle: .alert)
-    let accion = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+    let accion = UIAlertAction(title: "OK", style: .cancel, handler:hand)
     alerta.addAction(accion)
     
     return alerta

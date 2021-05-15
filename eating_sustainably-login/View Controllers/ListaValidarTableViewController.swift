@@ -10,9 +10,12 @@ import UIKit
 class ListaValidarTableViewController: UITableViewController {
     
     var listaUsuarios : [String] = []
+    var usuarioValidar : Usuario!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title="Usuarios pendientes de ser validados"
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -21,14 +24,17 @@ class ListaValidarTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         Constantes.db.collection("usersNoValidados").getDocuments() { (querySnapshot, err) in
-                if let err = err {
-                    print("Error getting documents: \(err)")
-                } else {
-                    for document in querySnapshot!.documents {
-                        self.listaUsuarios.append((document.get("email")) as! String)
-                    }
-                    self.tableView.reloadData()
+            if let document = querySnapshot, !document.isEmpty {
+                for doc in document.documents {
+                    self.listaUsuarios.append((doc.get("email")) as! String)
                 }
+                self.tableView.reloadData()
+            }
+            else {
+                //self.present(mostrarMsj(error: Constantes.VALIDAR_VACIO), animated: true, completion: nil)
+                self.present(mostrarMsj(error: Constantes.VALIDAR_VACIO, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}),
+                        animated: true, completion: nil)
+            }
         }
     }
 
@@ -55,56 +61,41 @@ class ListaValidarTableViewController: UITableViewController {
     }
     
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
+        //cargamos los datos
+        let indice = tableView.indexPathForSelectedRow!
+        let email = listaUsuarios[indice.row]
+
+        Constantes.db.collection("users").whereField("email", isEqualTo: email).getDocuments { (querySnapshot, error) in
+            if let document = querySnapshot, !document.isEmpty {
+                //Cargamos los datos de usuario en el objeto
+                for doc in document.documents {
+                    self.usuarioValidar = Usuario(nombre: doc.get("nombre") as? String, apellido: doc.get("apellido") as? String, email: doc.get("email") as? String, tipo: doc.get("tipo") as? Int, uid: doc.documentID, latitud: doc.get("latitud") as? Double, longitud:doc.get("longitud") as? Double, foto: doc.get("foto") as? String, info: doc.get("informacion") as? String, video: doc.get("video") as? String, negocio: doc.get("negocio") as? String , proceso: doc.get("proceso") as? String, categorias: doc.get("categorias") as! [Int], tlf: doc.get("telefono") as? String)
+                }
+                
+                //llamamos al segue cuando el usuario a validar se ha cargado
+                self.performSegue(withIdentifier: "validar", sender: self)
+            }
+            else {
+                self.present(mostrarMsj(error: Constantes.VALIDAR_VACIO), animated: true, completion: nil)
+            }
+        }
+        return false
+    }
+    
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if segue.identifier == "validar"{
             let vistaValidar = segue.destination as! Registro1ViewController
-            let indice = tableView.indexPathForSelectedRow!
-            vistaValidar.email = listaUsuarios[indice.row]
             vistaValidar.validar = true
+            vistaValidar.usuarioValidar = self.usuarioValidar
         }
-        
     }
-    
-
 }

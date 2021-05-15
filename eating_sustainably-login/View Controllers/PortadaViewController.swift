@@ -23,17 +23,30 @@ class PortadaViewController: UIViewController {
         //borde botones
         btnIniciarSesion.layer.cornerRadius = 8
         btnRegistrarse.layer.cornerRadius = 8
-        
-        if (Constantes.auth.currentUser != nil){
-            let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? HomeViewController
-            self.view.window?.rootViewController = homeViewController
-            self.view.window?.makeKeyAndVisible()            
-        }
-
-        
-        
     }
 
+    
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        if segue.identifier == "portada_login"{
+            let viewBuscar = segue.destination as! LogInViewController
+        }
+        else if segue.identifier == "portada_registro"{
+            let viewBuscar = segue.destination as! Registro1ViewController
+        }
+        else if segue.identifier == "portada_buscar"{
+            let viewBuscar = segue.destination as! BuscarViewController
+        }
+        else if segue.identifier == "portada_soporte"{
+            let viewSoporte = segue.destination as! PreguntasViewController
+        }
+    }
+    
 }
+
+
+
 

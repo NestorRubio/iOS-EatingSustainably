@@ -12,6 +12,8 @@
 	<string>Permisos localizacion</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Permisos localizacion</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Permitir acceso a subir fotos</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

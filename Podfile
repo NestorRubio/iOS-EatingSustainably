@@ -9,7 +9,7 @@ target 'eating_sustainably-login' do
   pod 'iOSDropDown'
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
-
+  pod 'Firebase/Storage'
   # Pods for eating_sustainably-login
 
 end

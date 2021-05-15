@@ -11,17 +11,12 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
     
 
     var contraseña : String?
-    var nombreNegocio: String?
-    var informacion: String?
-    
-    
+    var validar: Bool = false
+    var usuarioValidar: Usuario!
 
     @IBOutlet weak var tvInfNegocio: UITextView!
-    
     @IBOutlet weak var lbValidar: UILabel!
-    
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var btnContinuar: UIButton!
     
     var categorias : [String] = []
@@ -45,6 +40,27 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
         tvInfNegocio.textColor = UIColor.lightGray
                 
         categorias = definirCategorias(usuario:Constantes.usuario.m_tipo!)
+        
+        if (!validar){
+            lbValidar.isHidden = true
+        }
+        else {
+            tvInfNegocio.text = usuarioValidar.m_proceso
+            tvInfNegocio.isEditable = false
+            
+            //definimos el nombre de las categorias del usuario
+            categorias = definirCategorias(usuario: usuarioValidar.m_tipo!)
+            
+            //ponemos las categorias seleccionadas
+            categoriasSeleccionadas = usuarioValidar.m_categorias
+            
+            //no permitimos seleccionar en el table view
+            tableView.allowsSelection = false
+            
+            //mostramos la tabla
+            tableView.reloadData()
+        }
+
     }
     
     
@@ -73,50 +89,54 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
             //tituli
     //ETIQUETA PARA EL TITULO
             cell.textLabel?.text = categorias[indexPath.row]
-            //subtitulo
+        
+        if categoriasSeleccionadas.contains(indexPath.row){
+            cell.backgroundColor = UIColor.green.withAlphaComponent(0.5)
+        }
+        else{
+            cell.backgroundColor = UIColor.white
+        }
+
             return cell
        }
+
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-            if !categoriasSeleccionadas.contains(indexPath.row) {
-                categoriasSeleccionadas.append(indexPath.row)
-            }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if categoriasSeleccionadas.contains(indexPath.row) {
+        if !categoriasSeleccionadas.contains(indexPath.row) {
+            categoriasSeleccionadas.append(indexPath.row)
+        }
+        else {
             categoriasSeleccionadas = categoriasSeleccionadas.filter {$0 != indexPath.row}
         }
+        tableView.reloadData()
     }
 
-    /*
+
+    
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         var ejecutarSegue = true
-        if (tvInfNegocio.text == placeholder){
-            tvInfNegocio.text = ""
+        if (!validar){
+            if (tvInfNegocio.text == placeholder){
+                tvInfNegocio.text = ""
+            }
+            if (tvInfNegocio.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""){
+                
+                self.present(mostrarMsj(error: Constantes.PROCESO), animated: true, completion: nil)
+                ejecutarSegue = false
+            }
+            if (self.categoriasSeleccionadas.isEmpty)
+            {
+                self.present(mostrarMsj(error: Constantes.CATEGORIA), animated: true, completion: nil)
+                ejecutarSegue = false
+            }
         }
-        if (tvInfNegocio.text?.trimmingCharacters(in: .whitespacesAndNewlines) == ""){
-            
-            self.present(mostrarMsj(error: Constantes.PROCESO), animated: true, completion: nil)
-            ejecutarSegue = false
-        }
-        if (self.categoriasSeleccionadas.isEmpty)
-        {
-            self.present(mostrarMsj(error: Constantes.CATEGORIA), animated: true, completion: nil)
-            ejecutarSegue = false
-        }
-        return ejecutarSegue
 
+        return ejecutarSegue
     }
 
     
@@ -124,16 +144,14 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if segue.identifier == "registro3_4"{
+            
+            Constantes.usuario.m_proceso = tvInfNegocio.text!
+            Constantes.usuario.m_categorias = self.categoriasSeleccionadas
+            
             let viewR4 = segue.destination as! Registro4ViewController
-
             viewR4.contraseña = self.contraseña
-            viewR4.nombreNegocio = self.nombreNegocio
-            viewR4.informacion = self.informacion
-            viewR4.sustentable = tvInfNegocio.text!
-            viewR4.categorias = self.categoriasSeleccionadas
-
+            viewR4.validar = self.validar
+            viewR4.usuarioValidar = self.usuarioValidar
         }
-        
     }
-
 }
