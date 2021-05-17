@@ -15,6 +15,14 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var btnBloquear: UIButton!
     @IBOutlet weak var btnEliminar: UIButton!
     
+    @IBOutlet weak var lbNombreUsuario: UILabel!
+    @IBOutlet weak var lbCorreoUsuario: UILabel!
+    @IBOutlet weak var historiaUsuario: UITextView!
+    @IBOutlet weak var lbVideo: UILabel!
+    @IBOutlet weak var btnVideo: UIButton!
+    @IBOutlet weak var btnLocalizacion: UIButton!
+    
+    
     
     
     override func viewDidLoad() {
@@ -51,6 +59,25 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             fotoPerfil.image = Constantes.usuario.m_imagen
         }
         
+        // Checa que el usuario sea Agricultor o Restaurantero para mostrar el boton de localizacion
+        if(Constantes.usuario.m_tipo == Constantes.USER_AGRICULTOR || Constantes.usuario.m_tipo == Constantes.USER_RESTAURANTERO) {
+            btnLocalizacion.isHidden = false
+            lbVideo.isHidden = false
+            btnVideo.isHidden = false
+            
+        } else {
+            // Si el usuario no es agricultor o restaurantero no muestra el boton de localizacion
+            btnLocalizacion.isHidden = true
+            btnVideo.isHidden = true
+            lbVideo.isHidden = true
+        }
+        
+        // Muestra el nombre del usuario
+        lbNombreUsuario.text! = Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido!
+        // Muestra el correo del usuario
+        lbCorreoUsuario.text = Constantes.usuario.m_email!
+        // Muestra la informacion o historia del usuario
+        historiaUsuario.text = Constantes.usuario.m_informacion!
 
     }
     

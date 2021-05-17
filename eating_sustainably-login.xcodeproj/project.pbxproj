@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		088A033846E9DB16B9C71EA2 /* Pods_eating_sustainably_login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */; };
+		13E0768126520D6700F79CB5 /* MapaUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */; };
+		13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */; };
 		720FFFE9264FA6DA00A452AE /* BuscadorFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */; };
 		720FFFED264FAA2800A452AE /* BloquearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFEC264FAA2800A452AE /* BloquearViewController.swift */; };
 		7239ED8D26469EE900670F16 /* ListaValidarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaUsuarioViewController.swift; sourceTree = "<group>"; };
+		13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarPerfilUsuarioViewController.swift; sourceTree = "<group>"; };
 		5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eating_sustainably_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuscadorFeedViewController.swift; sourceTree = "<group>"; };
 		720FFFEC264FAA2800A452AE /* BloquearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloquearViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +157,8 @@
 		A3E6B8D52630F0DA00CDA0E6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */,
+				13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */,
 				72AB7A4E264FB1B8006E39A2 /* ModificarPasswordViewController.swift */,
 				72AB7A4B264FB169006E39A2 /* PreguntasViewController.swift */,
 				72AB7A43264FB109006E39A2 /* EliminarViewController.swift */,
@@ -297,6 +303,7 @@
 				726E4782264CBC3A007E60E5 /* SplashViewController.swift in Sources */,
 				720FFFED264FAA2800A452AE /* BloquearViewController.swift in Sources */,
 				72973FD5263149750053C1F2 /* Registro4ViewController.swift in Sources */,
+				13E0768126520D6700F79CB5 /* MapaUsuarioViewController.swift in Sources */,
 				72973FD2263149660053C1F2 /* Registro3ViewController.swift in Sources */,
 				72714639264C8580004D3067 /* RecuperarViewController.swift in Sources */,
 				72AB7A41264FB0C0006E39A2 /* BuscarViewController.swift in Sources */,
@@ -309,6 +316,7 @@
 				A3E6B8D02630F0BE00CDA0E6 /* LogInViewController.swift in Sources */,
 				727B6FC726461ADA00D73176 /* Usuario.swift in Sources */,
 				A3E6B8BA2630F07900CDA0E6 /* SceneDelegate.swift in Sources */,
+				13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */,
 				72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */,
 				726E4779264CB118007E60E5 /* PerfilViewController.swift in Sources */,
 				A3906EE2263112AD007271D2 /* Constantes.swift in Sources */,
