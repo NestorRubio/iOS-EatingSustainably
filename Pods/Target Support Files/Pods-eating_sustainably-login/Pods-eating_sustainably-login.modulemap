@@ -1,0 +1,6 @@
+framework module Pods_eating_sustainably_login {
+  umbrella header "Pods-eating_sustainably-login-umbrella.h"
+
+  export *
+  module * { export * }
+}
