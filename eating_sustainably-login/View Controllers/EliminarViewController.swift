@@ -8,6 +8,9 @@
 import UIKit
 
 class EliminarViewController: UIViewController {
+    
+    var usuarioVerPerfil : Usuario!
+    var ver : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

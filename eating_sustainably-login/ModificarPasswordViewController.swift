@@ -8,6 +8,9 @@
 import UIKit
 
 class ModificarPasswordViewController: UIViewController {
+    
+    var usuarioVerPerfil : Usuario!
+    var ver : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

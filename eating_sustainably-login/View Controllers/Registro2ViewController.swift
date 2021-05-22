@@ -112,13 +112,17 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
 
 
                         //el registro en firebase es correcto guardamos usuario en base de datos
-                        Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "apellido":Constantes.usuario.m_apellido!, "email":Constantes.usuario.m_email!, "tipo":Constantes.usuario.m_tipo!, "informacion": self.tfInformacion.text!,"foto":""])
+                        Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "nombre_query": Constantes.usuario.m_nombre!.lowercased(), "apellido":Constantes.usuario.m_apellido!, "apellido_query":Constantes.usuario.m_apellido!.lowercased(), "email":Constantes.usuario.m_email!, "email_query":Constantes.usuario.m_email!.lowercased(), "tipo":Constantes.usuario.m_tipo!, "informacion": self.tfInformacion.text!,"foto":""])
                         
                         let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
                         
                         //mostramos mensajes de confirmacion y vamos a home cuando el usuario acepta
-                        self.present(mostrarMsj(error: Constantes.REGISTRO_OK, hand: {(action) -> Void in self.view.window?.rootViewController = homeViewController
+                        self.present(mostrarMsj(error: Constantes.REGISTRO_OK, hand: {(action) -> Void in
+                                                    self.view.window?.rootViewController = homeViewController
                                                     self.view.window?.makeKeyAndVisible()}), animated: true, completion: nil)
+                        
+
+
 
                     }
                 }

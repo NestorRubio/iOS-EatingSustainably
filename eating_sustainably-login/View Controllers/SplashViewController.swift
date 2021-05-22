@@ -29,18 +29,14 @@ class SplashViewController: UIViewController {
                             Constantes.usuario = Usuario(nombre: document.get("nombre") as? String, apellido: document.get("apellido") as? String, email: document.get("email") as? String, tipo: document.get("tipo") as? Int, uid: document.documentID, foto: document.get("foto") as? String, info: document.get("informacion") as? String)
                             
                             if (Constantes.usuario.m_foto! != ""){
-                                let task = URLSession.shared.dataTask(with: URL(string: Constantes.usuario.m_foto!)!, completionHandler: {data, _, error in
-                                    DispatchQueue.main.async {
-                                        if error == nil, let data = data {
-                                            Constantes.usuario.m_imagen = UIImage(data: data)
-                                        }
-                                        else {
-                                            Constantes.usuario.m_foto = ""
-                                        }
+                                Constantes.storage.child(Constantes.usuario.m_foto!).getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                    if let error = error {
+                                        Constantes.usuario.m_foto = ""
                                     }
-
-                                })
-                                task.resume()
+                                    else {
+                                        Constantes.usuario.m_imagen = UIImage(data: data!)
+                                    }
+                                }
                             }
 
                             //si es tipo vendedor cargamos datos adicionales

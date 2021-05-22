@@ -15,11 +15,13 @@ struct Constantes {
         static let homeViewController = "HomeVC"
         static let portadaViewController = "PortadaVC"
         static let perfilViewController = "PerfilVC"
+        static let splashViewController = "Splash"
+
     }
     
     static let  NOMBRE_APP = "sustentax"
     
-    static let db = Firestore.firestore()
+    static let db = Firestore.firestore() 
     static let auth = Auth.auth()
     static let storage = Storage.storage().reference()
     static var usuario = Usuario()
@@ -60,6 +62,18 @@ struct Constantes {
     static let ERROR_FOTO_ST = 20
     static let CERRAR_OK = 21
     static let ERROR_CERRAR = 22
+    static let PASSWORD_DIFERENTE = 23
+    static let BUSQUEDA = 24
+    static let BUSCAR_VACIO = 25
+    static let UBICACION_ACTU = 26
+    static let EDITAR_OK = 27
+    static let NOMBRE_PRODUCTO = 28
+    static let DESCRIPCION = 29
+    static let PRECIO_VACIO = 30
+    static let PRECIO_NUMERO = 31
+    static let PRODUCTO_OK = 32
+    static let TIENDA_VACIA = 33
+
 
 
     static let DEFAULT = 99
@@ -192,6 +206,44 @@ func mostrarMsj(error: Int, hand : ((UIAlertAction)->Void)? = nil) -> UIAlertCon
     case Constantes.ERROR_CERRAR:
         mensaje = "No se ha podido cerrar sesión correctamente"
         break
+    case Constantes.PASSWORD_DIFERENTE:
+        mensaje = "Las contraseñas no coinciden"
+        break
+    case Constantes.BUSQUEDA:
+        mensaje = "Introduce al menos un criterio de búsqueda"
+        break
+    case Constantes.BUSCAR_VACIO:
+        mensaje = "No se han encontrado resultados de la búsqueda"
+        break
+    case Constantes.UBICACION_ACTU:
+        titulo = "Confirma los cambios"
+        mensaje = "Guarda los cambios para actualizar la ubicación de tu negocio"
+        break
+    case Constantes.EDITAR_OK:
+        titulo = "Proceso completado"
+        mensaje = "Se ha actualizado el perfil"
+        break
+    case Constantes.NOMBRE_PRODUCTO:
+        mensaje = "Introduce el nombre del producto"
+        break
+    case Constantes.DESCRIPCION:
+        mensaje = "Escribe la descripción del producto"
+        break
+    case Constantes.PRECIO_VACIO:
+        mensaje = "Introduce el precio del producto"
+        break
+    case Constantes.PRECIO_NUMERO:
+        mensaje = "Sólo se aceptan valores númericos y decimales"
+        break
+    case Constantes.PRODUCTO_OK:
+        titulo = "Proceso completado"
+        mensaje = "Se ha añadido el producto a tu tienda"
+        break
+    case Constantes.TIENDA_VACIA:
+        titulo = "Aviso"
+        mensaje = "La tienda está vacía, agrega productos"
+        break
+    
     case Constantes.DEFAULT:
         mensaje = "Error al procesar la operación, vuelve a intentarlo"
         break

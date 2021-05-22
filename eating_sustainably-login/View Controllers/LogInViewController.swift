@@ -113,23 +113,22 @@ class LogInViewController: UIViewController {
                                         }
                                         
                                         if (Constantes.usuario.m_foto! != ""){
-                                            let task = URLSession.shared.dataTask(with: URL(string: Constantes.usuario.m_foto!)!, completionHandler: {data, _, error in
-                                                DispatchQueue.main.async {
-                                                    if error == nil, let data = data {
-                                                        Constantes.usuario.m_imagen = UIImage(data: data)
-                                                    }
-                                                    else {
-                                                        Constantes.usuario.m_foto = ""
-                                                    }
+                                            Constantes.storage.child(Constantes.usuario.m_foto!).getData(maxSize: 1 * 1024 * 1024) { data, error in
+                                                if let error = error {
+                                                    Constantes.usuario.m_foto = ""
                                                 }
-
-                                            })
-                                            task.resume()
+                                                else {
+                                                    Constantes.usuario.m_imagen = UIImage(data: data!)
+                                                }
+                                            }
                                         }
                                             
                                         let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
                                         self.view.window?.rootViewController = homeViewController
                                         self.view.window?.makeKeyAndVisible()
+                                    }
+                                    else {
+                                        self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                                     }
                                 }
                             }

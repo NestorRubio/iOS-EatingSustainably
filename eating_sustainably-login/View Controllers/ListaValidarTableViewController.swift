@@ -81,7 +81,7 @@ class ListaValidarTableViewController: UITableViewController {
                 self.performSegue(withIdentifier: "validar", sender: self)
             }
             else {
-                self.present(mostrarMsj(error: Constantes.VALIDAR_VACIO), animated: true, completion: nil)
+                self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
             }
         }
         return false

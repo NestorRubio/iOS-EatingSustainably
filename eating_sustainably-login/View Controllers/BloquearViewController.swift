@@ -8,6 +8,9 @@
 import UIKit
 
 class BloquearViewController: UIViewController {
+    
+    var usuarioVerPerfil : Usuario!
+    var ver : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -131,11 +131,9 @@ class Registro4ViewController: UIViewController, CLLocationManagerDelegate {
                             }
                         }
                         else {
-                           
-                            
                             //el registro en firebase es correcto guardamos usuario en base de datos
-                            Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "apellido":Constantes.usuario.m_apellido!, "email":Constantes.usuario.m_email!, "tipo":Constantes.usuario.m_tipo!, "informacion": Constantes.usuario.m_informacion!, "proceso":Constantes.usuario.m_proceso!, "negocio":Constantes.usuario.m_negocio!, "categorias":Constantes.usuario.m_categorias, "telefono": self.tfTelefono.text!, "latitud":self.latitud, "longitud":self.longitud, "foto":"", "video":""]) { err in
-                                if let err = err {
+                            Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "nombre_query": Constantes.usuario.m_nombre!.lowercased(), "apellido":Constantes.usuario.m_apellido!, "apellido_query":Constantes.usuario.m_apellido!.lowercased(), "email":Constantes.usuario.m_email!, "email_query":Constantes.usuario.m_email!.lowercased(), "tipo":Constantes.usuario.m_tipo!, "informacion": Constantes.usuario.m_informacion!, "proceso":Constantes.usuario.m_proceso!, "negocio":Constantes.usuario.m_negocio!,"negocio_query":Constantes.usuario.m_negocio!.lowercased(), "categorias":Constantes.usuario.m_categorias, "telefono": self.tfTelefono.text!, "latitud":self.latitud, "longitud":self.longitud, "foto":"", "video":""]) { err in
+                                if err != nil {
                                     self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                                 }
                                 
@@ -144,7 +142,7 @@ class Registro4ViewController: UIViewController, CLLocationManagerDelegate {
                             
                             //los guardamos como pendientes de ser validados
                             Constantes.db.collection("usersNoValidados").document(result!.user.uid).setData(["email":Constantes.usuario.m_email!]) { err in
-                                if let err = err {
+                                if err != nil {
                                     self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                                 }
                                 //deslogeamos el usuario creado

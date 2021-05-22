@@ -13,6 +13,12 @@ class MapaUsuarioViewController: UIViewController {
     
     @IBOutlet weak var mapaUsuario: MKMapView!
     
+    var usuarioVerPerfil : Usuario!
+    var ver : Bool = false
+    var lat : Double!
+    var lon : Double!
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +26,17 @@ class MapaUsuarioViewController: UIViewController {
         // Guarda la direccion del usuario
         let locUsuario = MKPointAnnotation()
         
-        // Latitud y Longitud de usuario
-        let lat = Constantes.usuario.m_latitud!
-        let lon = Constantes.usuario.m_longitud!
+        if (self.ver == true){
+            // Latitud y Longitud de usuario
+            lat = usuarioVerPerfil.m_latitud!
+            lon = usuarioVerPerfil.m_longitud!
+        }
+        else {
+            // Latitud y Longitud de usuario
+            lat = Constantes.usuario.m_latitud!
+            lon = Constantes.usuario.m_longitud!
+        }
+
         
         // Usa las coordenadas para guardar la direccion
         locUsuario.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lon)
@@ -34,7 +48,12 @@ class MapaUsuarioViewController: UIViewController {
         let region = MKCoordinateRegion(center: locUsuario.coordinate, latitudinalMeters: 400, longitudinalMeters: 400)
         
         // Titulo del pin en la direccion del usuario
-        locUsuario.title = Constantes.usuario.m_negocio!
+        if (self.ver == true){
+            locUsuario.title = usuarioVerPerfil.m_negocio!
+        }
+        else {
+            locUsuario.title = Constantes.usuario.m_negocio!
+        }
         //
         mapaUsuario.setRegion(region, animated: true)
     }

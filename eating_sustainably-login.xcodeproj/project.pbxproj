@@ -12,7 +12,13 @@
 		13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */; };
 		720FFFE9264FA6DA00A452AE /* BuscadorFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */; };
 		720FFFED264FAA2800A452AE /* BloquearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFEC264FAA2800A452AE /* BloquearViewController.swift */; };
+		722A61DA265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A61D9265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift */; };
 		7239ED8D26469EE900670F16 /* ListaValidarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */; };
+		726589002658843A009FF947 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 726588FF2658843A009FF947 /* GoogleService-Info.plist */; };
+		726589042658C126009FF947 /* TiendaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726589032658C126009FF947 /* TiendaViewController.swift */; };
+		726589072658C6D4009FF947 /* TiendaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726589062658C6D4009FF947 /* TiendaTableViewCell.swift */; };
+		7265890A2658CD11009FF947 /* Producto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726589092658CD11009FF947 /* Producto.swift */; };
+		7265890D2658D29B009FF947 /* AgregarProductoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7265890C2658D29B009FF947 /* AgregarProductoViewController.swift */; };
 		726E4779264CB118007E60E5 /* PerfilViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726E4778264CB118007E60E5 /* PerfilViewController.swift */; };
 		726E4782264CBC3A007E60E5 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 726E4781264CBC3A007E60E5 /* SplashViewController.swift */; };
 		72714639264C8580004D3067 /* RecuperarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72714638264C8580004D3067 /* RecuperarViewController.swift */; };
@@ -26,7 +32,6 @@
 		72AB7A44264FB109006E39A2 /* EliminarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB7A43264FB109006E39A2 /* EliminarViewController.swift */; };
 		72AB7A4C264FB169006E39A2 /* PreguntasViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB7A4B264FB169006E39A2 /* PreguntasViewController.swift */; };
 		72AB7A4F264FB1B8006E39A2 /* ModificarPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AB7A4E264FB1B8006E39A2 /* ModificarPasswordViewController.swift */; };
-		A324981E2630FB5300E03536 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A324981D2630FB5300E03536 /* GoogleService-Info.plist */; };
 		A342C3512652E963008050DA /* FeedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A342C3502652E963008050DA /* FeedPost.swift */; };
 		A383C3122652469C00300841 /* ViewControllerFAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383C3112652469C00300841 /* ViewControllerFAQ.swift */; };
 		A383C32C26524A9500300841 /* FAQS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A383C32B26524A9500300841 /* FAQS.swift */; };
@@ -50,7 +55,13 @@
 		5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eating_sustainably_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuscadorFeedViewController.swift; sourceTree = "<group>"; };
 		720FFFEC264FAA2800A452AE /* BloquearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloquearViewController.swift; sourceTree = "<group>"; };
+		722A61D9265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BuscarUsuariosResultadosTableViewController.swift; path = "eating_sustainably-login/BuscarUsuariosResultadosTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListaValidarTableViewController.swift; sourceTree = "<group>"; };
+		726588FF2658843A009FF947 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		726589032658C126009FF947 /* TiendaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TiendaViewController.swift; path = "eating_sustainably-login/TiendaViewController.swift"; sourceTree = SOURCE_ROOT; };
+		726589062658C6D4009FF947 /* TiendaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiendaTableViewCell.swift; sourceTree = "<group>"; };
+		726589092658CD11009FF947 /* Producto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Producto.swift; path = "eating_sustainably-login/Producto.swift"; sourceTree = SOURCE_ROOT; };
+		7265890C2658D29B009FF947 /* AgregarProductoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AgregarProductoViewController.swift; path = "eating_sustainably-login/AgregarProductoViewController.swift"; sourceTree = SOURCE_ROOT; };
 		726E4778264CB118007E60E5 /* PerfilViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfilViewController.swift; sourceTree = "<group>"; };
 		726E4781264CBC3A007E60E5 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		72714638264C8580004D3067 /* RecuperarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperarViewController.swift; sourceTree = "<group>"; };
@@ -65,7 +76,6 @@
 		72AB7A4B264FB169006E39A2 /* PreguntasViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreguntasViewController.swift; sourceTree = SOURCE_ROOT; };
 		72AB7A4E264FB1B8006E39A2 /* ModificarPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ModificarPasswordViewController.swift; path = "eating_sustainably-login/ModificarPasswordViewController.swift"; sourceTree = SOURCE_ROOT; };
 		86C90C6502879390C144C31F /* Pods-eating_sustainably-login.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-eating_sustainably-login.debug.xcconfig"; path = "Target Support Files/Pods-eating_sustainably-login/Pods-eating_sustainably-login.debug.xcconfig"; sourceTree = "<group>"; };
-		A324981D2630FB5300E03536 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A342C3502652E963008050DA /* FeedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPost.swift; sourceTree = "<group>"; };
 		A383C3112652469C00300841 /* ViewControllerFAQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerFAQ.swift; sourceTree = "<group>"; };
 		A383C32B26524A9500300841 /* FAQS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQS.swift; sourceTree = "<group>"; };
@@ -118,6 +128,8 @@
 		A3906EE02631128B007271D2 /* helpers */ = {
 			isa = PBXGroup;
 			children = (
+				726589092658CD11009FF947 /* Producto.swift */,
+				726589062658C6D4009FF947 /* TiendaTableViewCell.swift */,
 				A3906EE1263112AD007271D2 /* Constantes.swift */,
 				727B6FC626461ADA00D73176 /* Usuario.swift */,
 			);
@@ -167,7 +179,7 @@
 				A3E6B8C02630F07C00CDA0E6 /* Assets.xcassets */,
 				A3E6B8C22630F07C00CDA0E6 /* LaunchScreen.storyboard */,
 				A3E6B8C52630F07C00CDA0E6 /* Info.plist */,
-				A324981D2630FB5300E03536 /* GoogleService-Info.plist */,
+				726588FF2658843A009FF947 /* GoogleService-Info.plist */,
 			);
 			path = "eating_sustainably-login";
 			sourceTree = "<group>";
@@ -175,6 +187,9 @@
 		A3E6B8D52630F0DA00CDA0E6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7265890C2658D29B009FF947 /* AgregarProductoViewController.swift */,
+				726589032658C126009FF947 /* TiendaViewController.swift */,
+				722A61D9265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift */,
 				13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */,
 				13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */,
 				72AB7A4E264FB1B8006E39A2 /* ModificarPasswordViewController.swift */,
@@ -259,10 +274,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A3E6B8C42630F07C00CDA0E6 /* LaunchScreen.storyboard in Resources */,
-				A324981E2630FB5300E03536 /* GoogleService-Info.plist in Resources */,
 				A3E6B8C12630F07C00CDA0E6 /* Assets.xcassets in Resources */,
 				A3E6B8BF2630F07900CDA0E6 /* Main.storyboard in Resources */,
 				A3BBAE1E2652CF9A0074EA0D /* FeedTableViewCell.xib in Resources */,
+				726589002658843A009FF947 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7265890A2658CD11009FF947 /* Producto.swift in Sources */,
 				A383C32C26524A9500300841 /* FAQS.swift in Sources */,
 				728B5D37264F529700C2EAF0 /* CodigoQRViewController.swift in Sources */,
 				72AB7A44264FB109006E39A2 /* EliminarViewController.swift in Sources */,
@@ -322,11 +338,14 @@
 				A3BBAE192652C62F0074EA0D /* FeedTableViewController.swift in Sources */,
 				A3E6B8BC2630F07900CDA0E6 /* PortadaViewController.swift in Sources */,
 				726E4782264CBC3A007E60E5 /* SplashViewController.swift in Sources */,
+				7265890D2658D29B009FF947 /* AgregarProductoViewController.swift in Sources */,
 				720FFFED264FAA2800A452AE /* BloquearViewController.swift in Sources */,
 				72973FD5263149750053C1F2 /* Registro4ViewController.swift in Sources */,
 				A3BBAE222652D1080074EA0D /* FeedTableViewCell.swift in Sources */,
 				13E0768126520D6700F79CB5 /* MapaUsuarioViewController.swift in Sources */,
 				72973FD2263149660053C1F2 /* Registro3ViewController.swift in Sources */,
+				726589072658C6D4009FF947 /* TiendaTableViewCell.swift in Sources */,
+				722A61DA265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift in Sources */,
 				72714639264C8580004D3067 /* RecuperarViewController.swift in Sources */,
 				72AB7A41264FB0C0006E39A2 /* BuscarViewController.swift in Sources */,
 				7239ED8D26469EE900670F16 /* ListaValidarTableViewController.swift in Sources */,
@@ -338,6 +357,7 @@
 				A3E6B8D02630F0BE00CDA0E6 /* LogInViewController.swift in Sources */,
 				727B6FC726461ADA00D73176 /* Usuario.swift in Sources */,
 				A3E6B8BA2630F07900CDA0E6 /* SceneDelegate.swift in Sources */,
+				726589042658C126009FF947 /* TiendaViewController.swift in Sources */,
 				13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */,
 				72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */,
 				A383C3122652469C00300841 /* ViewControllerFAQ.swift in Sources */,

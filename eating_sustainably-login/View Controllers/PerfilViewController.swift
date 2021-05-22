@@ -7,27 +7,38 @@
 
 import UIKit
 
-class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, protocoloActualizar {
 
     @IBOutlet weak var fotoPerfil: UIImageView!
+    
     @IBOutlet weak var btnQR: UIButton!
-
     @IBOutlet weak var btnBloquear: UIButton!
     @IBOutlet weak var btnEliminar: UIButton!
+    @IBOutlet weak var btnTienda: UIButton!
+    @IBOutlet weak var btnEditar: UIButton!
+    @IBOutlet weak var btnVideo: UIButton!
+    @IBOutlet weak var btnLocalizacion: UIButton!
+    @IBOutlet weak var btnModificar: UIButton!
     
     @IBOutlet weak var lbNombreUsuario: UILabel!
     @IBOutlet weak var lbCorreoUsuario: UILabel!
     @IBOutlet weak var historiaUsuario: UITextView!
     @IBOutlet weak var lbVideo: UILabel!
-    @IBOutlet weak var btnVideo: UIButton!
-    @IBOutlet weak var btnLocalizacion: UIButton!
+    @IBOutlet weak var lbHistoria: UILabel!
+    @IBOutlet weak var lbLocalizame: UILabel!
+    @IBOutlet weak var lbTelefono: UILabel!
+    @IBOutlet weak var lbTienda: UILabel!
+    
+    var usuarioVerPerfil : Usuario!
+    var ver : Bool = false
     
     
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Perfil"
+        title = "Mi Perfil"
+
         fotoPerfil.contentMode = .scaleAspectFit
 
         //personalizamos el botn de cerrar para que tenga imagen y texto
@@ -45,40 +56,118 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
         
 
         button.addTarget(self, action: #selector(self.cerrarSesion), for: .touchUpInside)
+        btnTienda.layer.cornerRadius = 8
+        
+        btnBloquear.isHidden = true
 
+        // Checa que el usuario sea Agricultor, Restaurantero o Tendero para mostrar el boton de localizacion
         if (Constantes.usuario.m_tipo == Constantes.USER_AGRICULTOR || Constantes.usuario.m_tipo == Constantes.USER_TENDERO || Constantes.usuario.m_tipo == Constantes.USER_RESTAURANTERO) {
             //usuario vendedor
-            btnBloquear.isHidden = true
+            
+            btnLocalizacion.isHidden = false
+            lbLocalizame.isHidden = false
+            lbVideo.isHidden = false
+            btnVideo.isHidden = false
+            btnQR.isHidden = false
+            lbTienda.isHidden = false
+            btnTienda.isHidden = false
+            // Muestra el telefono
+            lbTelefono.isHidden = false
+            lbTelefono.text! = Constantes.usuario.m_telefono!
+            //muestra tienda
+            btnTienda.setTitle(Constantes.usuario.m_negocio, for: .normal)
+            lbHistoria.text = "Mi historia"
 
         }
         else {
+            // Si el usuario no es agricultor, restaurantero o tendero no muestra el boton de localizacion
+            btnLocalizacion.isHidden = true
+            lbLocalizame.isHidden = true
+            btnVideo.isHidden = true
+            lbVideo.isHidden = true
             btnQR.isHidden = true
+            lbTienda.isHidden = true
+            btnTienda.isHidden = true
+            lbHistoria.text = "Información personal"
+            lbTelefono.isHidden = true
+    
         }
         
         if (Constantes.usuario.m_foto != ""){
             fotoPerfil.image = Constantes.usuario.m_imagen
         }
-        
-        // Checa que el usuario sea Agricultor o Restaurantero para mostrar el boton de localizacion
-        if(Constantes.usuario.m_tipo == Constantes.USER_AGRICULTOR || Constantes.usuario.m_tipo == Constantes.USER_RESTAURANTERO) {
-            btnLocalizacion.isHidden = false
-            lbVideo.isHidden = false
-            btnVideo.isHidden = false
+        if (ver == true){
+            title = "Perfil de "+usuarioVerPerfil.m_nombre!
+            button.isEnabled = false
+            navigationItem.rightBarButtonItems = []
+            btnEditar.isHidden = true
             
-        } else {
-            // Si el usuario no es agricultor o restaurantero no muestra el boton de localizacion
-            btnLocalizacion.isHidden = true
-            btnVideo.isHidden = true
-            lbVideo.isHidden = true
-        }
-        
-        // Muestra el nombre del usuario
-        lbNombreUsuario.text! = Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido!
-        // Muestra el correo del usuario
-        lbCorreoUsuario.text = Constantes.usuario.m_email!
-        // Muestra la informacion o historia del usuario
-        historiaUsuario.text = Constantes.usuario.m_informacion!
+            if (Constantes.usuario.m_tipo != Constantes.USER_ADMIN){
+                btnBloquear.isHidden = true
+                btnEliminar.isHidden = true
+                btnEditar.isHidden = true
+                btnQR.isHidden = true
+                btnModificar.isHidden = true
+                
+            }
+            else{
+                btnBloquear.isHidden = false
+                btnEliminar.isHidden = false
+                btnEditar.isHidden = false
+                btnQR.isHidden = false
+                btnModificar.isHidden = false
 
+            }
+            
+            if (usuarioVerPerfil.m_foto != ""){
+                fotoPerfil.image = usuarioVerPerfil.m_imagen
+            }
+            else {
+                fotoPerfil.image = UIImage(named: "avatarPerfil")
+            }
+            if (usuarioVerPerfil.m_tipo == Constantes.USER_AGRICULTOR || usuarioVerPerfil.m_tipo == Constantes.USER_TENDERO || usuarioVerPerfil.m_tipo == Constantes.USER_RESTAURANTERO) {
+                //usuario vendedor
+                btnLocalizacion.isHidden = false
+                lbLocalizame.isHidden = false
+                lbVideo.isHidden = false
+                btnVideo.isHidden = false
+                lbTienda.isHidden = false
+                btnTienda.isHidden = false
+                // Muestra el telefono
+                lbTelefono.isHidden = false
+                lbTelefono.text = usuarioVerPerfil.m_telefono!
+                //muestra tienda
+                btnTienda.setTitle(usuarioVerPerfil.m_negocio, for: .normal)
+                lbHistoria.text = "Mi historia"
+
+            }
+            else {
+                // Si el usuario no es agricultor, restaurantero o tendero no muestra el boton de localizacion
+                btnLocalizacion.isHidden = true
+                lbLocalizame.isHidden = true
+                btnVideo.isHidden = true
+                lbVideo.isHidden = true
+                lbTienda.isHidden = true
+                btnTienda.isHidden = true
+                lbHistoria.text = "Información personal"
+                lbTelefono.isHidden = true
+        
+            }
+            // Muestra el nombre del usuario
+            lbNombreUsuario.text! = usuarioVerPerfil.m_nombre! + " " + usuarioVerPerfil.m_apellido!
+            // Muestra el correo del usuario
+            lbCorreoUsuario.text = usuarioVerPerfil.m_email!
+            // Muestra la informacion o historia del usuario
+            historiaUsuario.text = usuarioVerPerfil.m_informacion!
+        }
+        else {
+            // Muestra el nombre del usuario
+            lbNombreUsuario.text! = Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido!
+            // Muestra el correo del usuario
+            lbCorreoUsuario.text = Constantes.usuario.m_email!
+            // Muestra la informacion o historia del usuario
+            historiaUsuario.text = Constantes.usuario.m_informacion!
+        }
     }
     
     
@@ -98,11 +187,12 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func agregarFoto(_ sender: UITapGestureRecognizer) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
-        
+        if (ver == false || Constantes.usuario.m_tipo == Constantes.USER_ADMIN) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            present(imagePicker, animated: true, completion: nil)
+        }
     }
     //MARK: - Métodos de delgado UIImage Picker Controller
     
@@ -113,25 +203,17 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         Constantes.storage.child("fotosPerfil/"+Constantes.usuario.m_uid!+".png").putData(data!, metadata: nil, completion: {_, error in
             if error == nil {
-                Constantes.storage.child("fotosPerfil/"+Constantes.usuario.m_uid!+".png").downloadURL(completion: { url, error in
-                    if error == nil, let url = url {
-                        Constantes.db.collection("users").document(Constantes.usuario.m_uid!).updateData(["foto": url.absoluteString]){ err in
-                            if let err = err {
-                                //error actualizar fireabse
-                                self.present(mostrarMsj(error: Constantes.ERROR_FOTO_FB), animated: true, completion: nil)
-                            }
-                            else {
-                                Constantes.usuario.m_foto = url.absoluteString
-                                Constantes.usuario.m_imagen = foto
-                                self.fotoPerfil.image = foto
-                            }
-                        }
+                Constantes.db.collection("users").document(Constantes.usuario.m_uid!).updateData(["foto": "fotosPerfil/"+Constantes.usuario.m_uid!+".png"]){ err in
+                    if let err = err {
+                        //error actualizar fireabse
+                        self.present(mostrarMsj(error: Constantes.ERROR_FOTO_FB), animated: true, completion: nil)
                     }
                     else {
-                        //error storage
-                        self.present(mostrarMsj(error: Constantes.ERROR_FOTO_ST), animated: true, completion: nil)
+                        Constantes.usuario.m_foto = "fotosPerfil/"+Constantes.usuario.m_uid!+".png"
+                        Constantes.usuario.m_imagen = foto
+                        self.fotoPerfil.image = foto
                     }
-                })
+                }
             }
             else {
                 //error storage
@@ -148,6 +230,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
         dismiss(animated: true, completion: nil)
 
     }
+    
 
     // MARK: - Navigation
 
@@ -156,16 +239,47 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         if segue.identifier == "perfil_qr"{
             let viewBuscar = segue.destination as! CodigoQRViewController
+        
         }
         else if segue.identifier == "perfil_bloquear"{
-            let viewSoporte = segue.destination as! BloquearViewController
+            let viewBloquear = segue.destination as! BloquearViewController
+            viewBloquear.ver = self.ver
+            viewBloquear.usuarioVerPerfil = self.usuarioVerPerfil
         }
         else if segue.identifier == "perfil_eliminar"{
-            let viewSoporte = segue.destination as! EliminarViewController
-        
-        } else if segue.identifier == "perfil_modificar"{
-            let viewSoporte = segue.destination as! ModificarPasswordViewController
+            let viewEliminar = segue.destination as! EliminarViewController
+            viewEliminar.ver = self.ver
+            viewEliminar.usuarioVerPerfil = self.usuarioVerPerfil
         }
+        else if segue.identifier == "perfil_modificar"{
+            let viewModificar = segue.destination as! ModificarPasswordViewController
+            viewModificar.ver = self.ver
+            viewModificar.usuarioVerPerfil = self.usuarioVerPerfil
+        }
+        else if segue.identifier == "perfil_editar"{
+            let viewEditar = segue.destination as! EditarPerfilUsuarioViewController
+            viewEditar.ver = self.ver
+            viewEditar.usuarioVerPerfil = self.usuarioVerPerfil
+            viewEditar.delegado = self
+        }
+        else if segue.identifier == "perfil_mapa"{
+            let viewMapa = segue.destination as! MapaUsuarioViewController
+            viewMapa.ver = self.ver
+            viewMapa.usuarioVerPerfil = self.usuarioVerPerfil
+        }
+        else if segue.identifier == "perfil_tienda"{
+            let viewTienda = segue.destination as! TiendaViewController
+            viewTienda.ver = self.ver
+            viewTienda.usuarioVerPerfil = self.usuarioVerPerfil
+        }
+        
+        
+    }
+    // MARK: - Métodos del protocolo actualizar
+    func actualizarPerfil(nombre: String, apellido: String, info: String, tlf: String) {
+        lbNombreUsuario.text = nombre + " " + apellido
+        historiaUsuario.text = info
+        lbTelefono.text = tlf
     }
 }
 

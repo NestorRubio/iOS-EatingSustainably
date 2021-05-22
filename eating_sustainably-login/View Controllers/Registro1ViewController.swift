@@ -35,10 +35,14 @@ class Registro1ViewController: UIViewController {
         title = "Información básica"
         bttnRegistro.layer.cornerRadius = 8
         
+        //diseño dropdown
+        dropDownUserType.rowBackgroundColor = .lightGray
+        dropDownUserType.selectedRowColor = .green
+        
         //variable auxiliar para las ids
         var optIds : [Int] = []
         //bucle para tipo de usuarios que hay, el 0 es admin lo saltamos
-        for i in 1 ... Constantes.USER_TOTAL{
+        for i in 1 ..< Constantes.USER_TOTAL{
             dropDownUserType.optionArray.append(getUserStringName(users: i))
             optIds.append(i)
         }
@@ -47,6 +51,7 @@ class Registro1ViewController: UIViewController {
         dropDownUserType.didSelect{(selectedText , index ,id) in
             self.tipoUsuario = id
         }
+        
         if (!validar){
             lbValidar.isHidden = true
         }
@@ -79,8 +84,11 @@ class Registro1ViewController: UIViewController {
         if (tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfEmail.text ?? "", tipo: Constantes.MAIL)) {
             return Constantes.MAIL
         }
-        if (tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfPassword.text ?? "", tipo: Constantes.PASSWORD) || tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) != tfVerPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines)) {
+        if (tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfPassword.text ?? "", tipo: Constantes.PASSWORD)) {
             return Constantes.PASSWORD
+        }
+        if (tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) != tfVerPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines)){
+            return Constantes.PASSWORD_DIFERENTE
         }
         if (tipoUsuario <= Constantes.USER_ADMIN || tipoUsuario >= Constantes.USER_TOTAL) {
             return Constantes.TIPO_USER
