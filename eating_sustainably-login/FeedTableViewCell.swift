@@ -14,12 +14,13 @@ class FeedTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lbAuthor: UILabel!
     @IBOutlet weak var lbMessage: UILabel!
-    
+    @IBOutlet weak var lbLikes: UILabel!
     
     func  configure(with post: FeedPost){
         lbAuthor.text = post.author
         lbMessage.text = post.content
-        
+        lbLikes.text = String(post.likes)
+    
     }
     
 }

@@ -41,19 +41,27 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfs-v5-4pB">
                                 <rect key="frame" x="0.0" y="175" width="339" height="40"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-JQ-1fx">
-                                        <rect key="frame" x="10" y="10" width="20" height="20"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKW-JQ-1fx">
+                                        <rect key="frame" x="0.0" y="1" width="39" height="39"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="IUo-zw-XLd"/>
                                             <constraint firstAttribute="height" constant="20" id="TUu-Ug-VWs"/>
                                         </constraints>
                                         <state key="normal" image="like"/>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Kb-Fe-VjO">
+                                        <rect key="frame" x="58" y="10" width="42" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="IKW-JQ-1fx" firstAttribute="leading" secondItem="xfs-v5-4pB" secondAttribute="leading" constant="10" id="bCh-79-x7A"/>
                                     <constraint firstItem="IKW-JQ-1fx" firstAttribute="centerY" secondItem="xfs-v5-4pB" secondAttribute="centerY" id="dNU-Yo-vvj"/>
+                                    <constraint firstItem="3Kb-Fe-VjO" firstAttribute="centerY" secondItem="xfs-v5-4pB" secondAttribute="centerY" id="daH-bf-akk"/>
+                                    <constraint firstItem="3Kb-Fe-VjO" firstAttribute="leading" secondItem="IKW-JQ-1fx" secondAttribute="trailing" constant="19" id="hjA-G0-G1t"/>
                                     <constraint firstAttribute="height" constant="40" id="nbh-aX-zpV"/>
                                 </constraints>
                             </view>
@@ -72,9 +80,10 @@
             <connections>
                 <outlet property="imgProfilePic" destination="a0E-wc-UGm" id="NT1-w9-8mT"/>
                 <outlet property="lbAuthor" destination="sbq-Ah-nMA" id="cXt-Ev-K9g"/>
+                <outlet property="lbLikes" destination="3Kb-Fe-VjO" id="aFx-gp-QWR"/>
                 <outlet property="lbMessage" destination="eLf-JW-GTy" id="cWj-I6-jBP"/>
             </connections>
-            <point key="canvasLocation" x="-569" y="-91"/>
+            <point key="canvasLocation" x="-286" y="-81"/>
         </tableViewCell>
     </objects>
     <resources>

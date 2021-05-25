@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ywr-hD-ZkH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="NB0-CF-h31">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -610,10 +610,10 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="h2L-Xt-wlh" kind="relationship" relationship="viewControllers" id="MmE-rr-bX0"/>
                         <segue destination="9lx-Ee-9t3" kind="relationship" relationship="viewControllers" id="6bk-XF-PS6"/>
                         <segue destination="Zdo-h7-R52" kind="relationship" relationship="viewControllers" id="z0l-wq-JjR"/>
                         <segue destination="dcp-Yz-Dt9" kind="relationship" relationship="viewControllers" id="hdf-g7-ej1"/>
+                        <segue destination="LOb-6B-FgK" kind="relationship" relationship="viewControllers" id="M2W-bo-gey"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B6a-4X-E9a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1022,6 +1022,19 @@
             </objects>
             <point key="canvasLocation" x="6306" y="-376"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="M8h-sH-ah5">
+            <objects>
+                <navigationController id="vCW-5Y-kwB" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="oUJ-MS-dSM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HWf-7K-XlZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6390" y="-1038"/>
+        </scene>
         <!--Feed Table View Controller-->
         <scene sceneID="E0q-yE-FRL">
             <objects>
@@ -1045,10 +1058,55 @@
                             <outlet property="delegate" destination="gLH-FX-GQc" id="osW-gA-HBp"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="M3b-eo-vfZ">
+                        <barButtonItem key="rightBarButtonItem" title="Crear Publicacion" id="M9R-c9-aAD">
+                            <connections>
+                                <segue destination="wM7-6G-kWX" kind="presentation" id="Quh-Z0-b44"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecQ-co-ehn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7976.8000000000002" y="-1021.4392803598201"/>
+            <point key="canvasLocation" x="8916" y="-1021.4392803598201"/>
+        </scene>
+        <!--View Controller Crear Publicacion-->
+        <scene sceneID="BW6-Ky-Dq3">
+            <objects>
+                <viewController id="wM7-6G-kWX" customClass="ViewControllerCrearPublicacion" customModule="eating_sustainably_login" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="DfE-QF-hVF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3M-Uz-IqA">
+                                <rect key="frame" x="159" y="504" width="56" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Publicar"/>
+                                <connections>
+                                    <action selector="publicar:" destination="wM7-6G-kWX" eventType="touchUpInside" id="afg-DJ-vT6"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-ov-mnV">
+                                <rect key="frame" x="20" y="44" width="319" height="180"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" hint="dfdfdffdf"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="152-aV-HR2"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="bttnPublicar" destination="M3M-Uz-IqA" id="qwm-lr-LrX"/>
+                        <outlet property="tfPost" destination="ejm-ov-mnV" id="y3T-l3-U93"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jc9-XC-kKE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9696.7999999999993" y="-1021.4392803598201"/>
         </scene>
         <!--Bloquear View Controller-->
         <scene sceneID="TeQ-JA-iiF">
@@ -1082,6 +1140,29 @@
                     <view key="view" contentMode="scaleToFill" id="LkE-p9-5wh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Escribe tu contraseña actual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lN3-gF-W9h">
+                                <rect key="frame" x="16" y="116" width="216" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Escribe tu contraseña nueva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXv-Zr-cF8">
+                                <rect key="frame" x="16" y="205" width="216" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Confirma tu contraseña nueva" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQt-tf-lzX">
+                                <rect key="frame" x="16" y="282" width="229" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="1Nt-14-enL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -1540,11 +1621,30 @@
             </objects>
             <point key="canvasLocation" x="8119" y="510"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="0Qg-TZ-PsC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LOb-6B-FgK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="house.fill" catalog="system" id="elP-1s-wij"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a6c-sX-ZRF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="gLH-FX-GQc" kind="relationship" relationship="rootViewController" id="UfI-2q-FGM"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e0u-a0-BJy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7976.8000000000002" y="-1021.4392803598201"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IHA-xn-jqR"/>
         <segue reference="XaY-cz-4wd"/>
-        <segue reference="HsL-b0-Z4Z"/>
+        <segue reference="6bk-XF-PS6"/>
         <segue reference="5NG-zM-ebI"/>
     </inferredMetricsTieBreakers>
     <resources>
