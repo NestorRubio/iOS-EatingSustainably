@@ -83,7 +83,7 @@
                 <outlet property="lbLikes" destination="3Kb-Fe-VjO" id="aFx-gp-QWR"/>
                 <outlet property="lbMessage" destination="eLf-JW-GTy" id="cWj-I6-jBP"/>
             </connections>
-            <point key="canvasLocation" x="-286" y="-81"/>
+            <point key="canvasLocation" x="-286.23188405797106" y="-81.361607142857139"/>
         </tableViewCell>
     </objects>
     <resources>

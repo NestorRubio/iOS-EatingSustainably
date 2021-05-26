@@ -25,8 +25,13 @@ class ViewControllerCrearPublicacion: UIViewController {
     
     
     @IBAction func publicar(_ sender: UIButton) {
-        
-        db.collection("posts").addDocument(data: ["likes": 0, "name": Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido! , "post": tfPost.text!])
+        let date = Date();
+        let format = DateFormatter();
+        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let timestamp = format.string(from: date)
+                
+        db.collection("posts").addDocument(data: ["likes": 0, "name": Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido! , "post": tfPost.text!,"timestamp": timestamp])
+
         
         //mensaje de confirmación y vuelta al feed general
         self.present(mostrarMsj(error: Constantes.PUBLICACION_OK, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}),

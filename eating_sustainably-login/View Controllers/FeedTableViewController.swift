@@ -57,29 +57,40 @@ class FeedTableViewController: UITableViewController {
             btnValidar.isEnabled = false
             navigationItem.rightBarButtonItems = [btnCerrar, btnBuscar, btnPublicar]
         }
+        handleSpecificChanges()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        postsCollectionRef.getDocuments{(snapshot, error) in
-            if let err = error{
-                debugPrint("Error al recuperar datos: \(err)")
-            }else{
-                guard let snap = snapshot else {return}
-                for document in (snap.documents){
-                    let data = document.data()
-
-                    let username = data["name"] as? String ?? "Anonymus"
-                    let postRec = data["post"] as? String ?? "Nada que decir"
-                    let likes = data["likes"] as? Int ?? 0
-                    
-                    let newFeedPost = FeedPost(author: username, content: postRec, likes: likes)
-                    
-                    self.posts.append(newFeedPost)
-                    
+    
+    func queryInFormat() {
+            posts.removeAll()
+            postsCollectionRef.order(by: "timestamp", descending: true).limit(to: 20).getDocuments{(snapshot, error) in
+                if let err = error{
+                    debugPrint("Error al recuperar datos: \(err)")
+                }else{
+                    guard let snap = snapshot else {return}
+                    for document in (snap.documents){
+                        
+                        let post = FeedPost(withDoc: document)
+                        self.posts.append(post)
+                        
+                    }
+                    self.tableView.reloadData()
                 }
-                self.tableView.reloadData()
             }
         }
-    }
+        
+        func handleSpecificChanges() {
+            
+            let collectionRef = postsCollectionRef
+            collectionRef!.addSnapshotListener { querySnapshot, error in
+                guard let snapshot = querySnapshot else {
+                    print("Error fetching snapshots: \(error!)")
+                    return
+                }
+                
+                
+                self.queryInFormat()
+            }
+        }
     
 
 
