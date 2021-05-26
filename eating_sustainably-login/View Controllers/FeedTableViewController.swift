@@ -10,6 +10,12 @@ import Firebase
 
 class FeedTableViewController: UITableViewController {
     
+    @IBOutlet weak var btnValidar: UIBarButtonItem!
+    @IBOutlet weak var btnBuscar: UIBarButtonItem!
+    @IBOutlet weak var btnCerrar: UIBarButtonItem!
+    
+    @IBOutlet weak var btnPublicar: UIBarButtonItem!
+    
     let identifier = "FeedTableViewCell"
     
     private var posts = [FeedPost]()
@@ -29,6 +35,28 @@ class FeedTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         postsCollectionRef = Firestore.firestore().collection("posts")
+        title = "Feed general"
+        //title = Constantes.usuario.m_email
+        
+        btnValidar.title = "Validar"
+
+        btnBuscar.image = UIImage(systemName: "magnifyingglass")
+        btnBuscar.tintColor = .black
+
+        btnCerrar.image = UIImage(systemName: "power")
+        btnCerrar.tintColor = .red
+        
+
+        // Do any additional setup after loading the view.
+        
+        if (Constantes.usuario.m_tipo == Constantes.USER_ADMIN){
+            btnValidar.isEnabled = true
+            navigationItem.rightBarButtonItems = [btnCerrar, btnBuscar, btnPublicar, btnValidar]
+        }
+        else {
+            btnValidar.isEnabled = false
+            navigationItem.rightBarButtonItems = [btnCerrar, btnBuscar, btnPublicar]
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         postsCollectionRef.getDocuments{(snapshot, error) in
@@ -76,50 +104,39 @@ class FeedTableViewController: UITableViewController {
 
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    @IBAction func cerrarSesion(_ sender: UIBarButtonItem) {
+        do {
+            try Constantes.auth.signOut()
+        
+            let portada = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.portadaViewController) as? UINavigationController
+            Constantes.usuario = Usuario()
+            //mostramos mensajes de confirmacion y vamos a portada cuando el usuario acepta
+            self.present(mostrarMsj(error: Constantes.CERRAR_OK, hand: {(action) -> Void in self.view.window?.rootViewController = portada
+                                        self.view.window?.makeKeyAndVisible()}), animated: true, completion: nil)
+        }
+        catch let signOutError as NSError {
+            self.present(mostrarMsj(error: Constantes.ERROR_CERRAR), animated: true, completion: nil)
+        }
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+
+        if segue.identifier == "home_buscador"{
+            let viewBuscador = segue.destination as! BuscadorFeedViewController
+        }
+        else if segue.identifier == "home_validar"{
+            let viewValidar = segue.destination as! ListaValidarTableViewController
+        }
+        else if segue.identifier == "home_publicar"{
+            let viewPost = segue.destination as! ViewControllerCrearPublicacion
+        }
     }
-    */
+
 
 }

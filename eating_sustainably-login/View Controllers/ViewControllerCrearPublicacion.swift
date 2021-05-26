@@ -26,15 +26,13 @@ class ViewControllerCrearPublicacion: UIViewController {
     
     @IBAction func publicar(_ sender: UIButton) {
         
-        db.collection("posts").addDocument(data: ["likes": 0, "name": Usuario().m_nombre! + " " + Usuario().m_apellido! , "post": tfPost.text!])
+        db.collection("posts").addDocument(data: ["likes": 0, "name": Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido! , "post": tfPost.text!])
+        
+        self.present(mostrarMsj(error: Constantes.VALIDAR_VACIO, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}),
+                animated: true, completion: nil)
         
     }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        if let firstVC = presentingViewController as? FeedTableViewController{
-            firstVC.tableView.reloadData()
-        }
-    }
+
     
     
 

@@ -622,8 +622,8 @@
             filePath = "eating_sustainably-login/AgregarProductoViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -631,16 +631,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DAE95963-83F9-45D2-B7EA-183B53BEEF45"
+            uuid = "536F7CDF-7198-4CF7-823B-61E958B26810"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "eating_sustainably-login/TiendaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "eliminarProducto(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

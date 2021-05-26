@@ -176,7 +176,8 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             try Constantes.auth.signOut()
         
             let portada = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.portadaViewController) as? UINavigationController
-            
+            Constantes.usuario = Usuario()
+
             //mostramos mensajes de confirmacion y vamos a portada cuando el usuario acepta
             self.present(mostrarMsj(error: Constantes.CERRAR_OK, hand: {(action) -> Void in self.view.window?.rootViewController = portada
                                         self.view.window?.makeKeyAndVisible()}), animated: true, completion: nil)
@@ -187,7 +188,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func agregarFoto(_ sender: UITapGestureRecognizer) {
-        if (ver == false || Constantes.usuario.m_tipo == Constantes.USER_ADMIN) {
+        if (ver == false) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
