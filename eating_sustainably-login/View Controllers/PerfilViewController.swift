@@ -272,6 +272,10 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             let viewTienda = segue.destination as! TiendaViewController
             viewTienda.ver = self.ver
             viewTienda.usuarioVerPerfil = self.usuarioVerPerfil
+        } else if segue.identifier == "ver_video" {
+            let viewVideo = segue.destination as! VerVideoViewController
+            viewVideo.ver = self.ver
+            viewVideo.usuarioVerPerfil = self.usuarioVerPerfil
         }
         
         
