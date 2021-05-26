@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ywr-hD-ZkH">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18121" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YVL-GT-NEe">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18092"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -202,13 +202,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-cq-afs">
-                                <rect key="frame" x="40" y="424" width="78" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Subir video">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVS-cY-GJF">
                                 <rect key="frame" x="37" y="509" width="295" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -228,6 +221,19 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link Video" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbB-qz-wmV">
+                                <rect key="frame" x="37" y="467" width="291" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-cq-afs">
+                                <rect key="frame" x="143" y="429" width="78" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Subir video">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e37-Zv-feM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -238,12 +244,13 @@
                         <outlet property="btnVideo" destination="QGA-cq-afs" id="2tT-Xx-Aaw"/>
                         <outlet property="lbValidar" destination="Q0J-UD-unY" id="itK-sk-7Z0"/>
                         <outlet property="tfInformacion" destination="D6S-JK-JfX" id="JHZ-G6-vGp"/>
+                        <outlet property="tfLinkVideo" destination="FbB-qz-wmV" id="Wud-p4-zP6"/>
                         <outlet property="tfNombreNegocio" destination="9mD-xW-BgX" id="R3p-1M-aZw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clW-vA-2Ly" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2222" y="1264"/>
+            <point key="canvasLocation" x="2221.5999999999999" y="1263.4182908545729"/>
         </scene>
         <!--Registro3 View Controller-->
         <scene sceneID="dFu-Ro-zaj">
@@ -287,7 +294,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="celda" id="XKx-Ew-HBt">
-                                        <rect key="frame" x="0.0" y="28" width="288" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="288" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XKx-Ew-HBt" id="PcV-tu-sjT">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="43.5"/>
@@ -446,7 +453,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="celda" id="534-P5-Vug">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="534-P5-Vug" id="49e-nx-962">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -489,7 +496,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="celdaFAQ" textLabel="392-kh-9jp" detailTextLabel="leg-FW-RYJ" style="IBUITableViewCellStyleSubtitle" id="fKp-Lf-HdJ">
-                                        <rect key="frame" x="0.0" y="28" width="321" height="55.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="321" height="55.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="celdaFAQ" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fKp-Lf-HdJ" id="SWq-3p-yo4">
                                             <rect key="frame" x="0.0" y="0.0" width="321" height="55.5"/>
@@ -669,6 +676,9 @@
                                 <rect key="frame" x="156" y="408" width="63" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ver video"/>
+                                <connections>
+                                    <segue destination="Oiz-IK-VgJ" kind="show" identifier="ver_video" id="xiO-Sq-6bV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btJ-6Q-tq3">
                                 <rect key="frame" x="278" y="578" width="81" height="30"/>
@@ -873,7 +883,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="celda" rowHeight="130" id="kUd-Rg-jTR" customClass="TiendaTableViewCell" customModule="eating_sustainably_login" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="343" height="130"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="343" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kUd-Rg-jTR" id="zcj-pd-tPD">
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="130"/>
@@ -995,7 +1005,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedTableViewCell" id="foY-7e-55s" customClass="FeedTableViewCell" customModule="eating_sustainably_login" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="375" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="foY-7e-55s" id="YQV-KU-I5e">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -1508,7 +1518,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="celda" textLabel="Oda-z5-FkV" detailTextLabel="6iJ-wu-Rcf" style="IBUITableViewCellStyleSubtitle" id="x6J-9A-2xK">
-                                <rect key="frame" x="0.0" y="28" width="375" height="55.5"/>
+                                <rect key="frame" x="0.0" y="24.5" width="375" height="55.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="x6J-9A-2xK" id="7rz-jI-0CT">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
@@ -1681,6 +1691,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RXE-ns-FPz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3740" y="-376"/>
+        </scene>
+        <!--Ver Video View Controller-->
+        <scene sceneID="jtB-WG-qGT">
+            <objects>
+                <viewController id="Oiz-IK-VgJ" customClass="VerVideoViewController" customModule="eating_sustainably_login" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="42X-Wl-eEM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qr6-Jp-mQL" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="200"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Negocio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXd-37-yWf">
+                                <rect key="frame" x="16" y="252" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Dueno" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olC-FM-Cbe">
+                                <rect key="frame" x="16" y="281" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="J2D-PE-xfj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Qr6-Jp-mQL" firstAttribute="leading" secondItem="J2D-PE-xfj" secondAttribute="leading" id="2Yc-vJ-f3Y"/>
+                            <constraint firstItem="gXd-37-yWf" firstAttribute="leading" secondItem="J2D-PE-xfj" secondAttribute="leading" constant="16" id="8cT-03-clm"/>
+                            <constraint firstItem="J2D-PE-xfj" firstAttribute="trailing" secondItem="olC-FM-Cbe" secondAttribute="trailing" constant="16" id="GTx-Xl-NNc"/>
+                            <constraint firstItem="Qr6-Jp-mQL" firstAttribute="trailing" secondItem="J2D-PE-xfj" secondAttribute="trailing" id="Jho-wa-P9M"/>
+                            <constraint firstItem="J2D-PE-xfj" firstAttribute="trailing" secondItem="gXd-37-yWf" secondAttribute="trailing" constant="16" id="Luj-Ce-nc6"/>
+                            <constraint firstItem="olC-FM-Cbe" firstAttribute="top" secondItem="gXd-37-yWf" secondAttribute="bottom" constant="8" id="YFg-kj-YQk"/>
+                            <constraint firstItem="Qr6-Jp-mQL" firstAttribute="top" secondItem="J2D-PE-xfj" secondAttribute="top" id="mhk-iP-8bh"/>
+                            <constraint firstItem="olC-FM-Cbe" firstAttribute="leading" secondItem="J2D-PE-xfj" secondAttribute="leading" constant="16" id="pne-MT-U9G"/>
+                            <constraint firstItem="gXd-37-yWf" firstAttribute="top" secondItem="Qr6-Jp-mQL" secondAttribute="bottom" constant="8" id="t2g-BJ-CXx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3wa-6n-rWh"/>
+                    <connections>
+                        <outlet property="lbDueno" destination="olC-FM-Cbe" id="kLH-NO-q7T"/>
+                        <outlet property="lbNegocio" destination="gXd-37-yWf" id="Cfb-ms-g9I"/>
+                        <outlet property="playerView" destination="Qr6-Jp-mQL" id="xlk-JI-x3Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PNx-uH-R58" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9245.6000000000004" y="1150.9745127436283"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

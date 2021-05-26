@@ -11,6 +11,7 @@ target 'eating_sustainably-login' do
   pod 'FirebaseFirestoreSwift'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
+  pod 'youtube-ios-player-helper'
   # Pods for eating_sustainably-login
 
 end
