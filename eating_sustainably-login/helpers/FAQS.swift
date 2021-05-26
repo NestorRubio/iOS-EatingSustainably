@@ -9,10 +9,10 @@ import UIKit
 
 class FAQS: NSObject {
 
-    var pregunta : String!
-    var respuesta : String!
+    var pregunta : String
+    var respuesta : String
     
-    init(pregunta : String!, respuesta : String!) {
+    init(pregunta : String, respuesta : String) {
         self.pregunta = pregunta
         self.respuesta = respuesta
     }

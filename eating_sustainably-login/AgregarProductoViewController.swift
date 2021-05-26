@@ -8,6 +8,10 @@
 import UIKit
 import iOSDropDown
 
+protocol protocoloAgregar{
+    func agregarProducto(producto : Producto)
+}
+
 class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var tvDescripcion: UITextView!
@@ -17,6 +21,8 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
 
     @IBOutlet weak var imgFoto: UIImageView!
     
+    var delegado : protocoloAgregar!
+
     
     var placeholder = "Escribe la descripción del producto"
 
@@ -40,11 +46,16 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
         var optIdsCat : [Int] = []
         
         //cargamos las diferentes categorias dependiendo del tipo de usuario
-        self.ddCategoria.optionArray = definirCategorias(usuario: Constantes.usuario.m_tipo!)
-
+        var categoriasTipo = definirCategorias(usuario: Constantes.usuario.m_tipo!)
+        var categoriasContador = 0
+        
         //bucle para las categorias
-        for i in 0 ... self.ddCategoria.optionArray.count{
-            optIdsCat.append(i)
+        for i in 0 ... categoriasTipo.count{
+            if (Constantes.usuario.m_categorias.contains(i)) {
+                optIdsCat.append(categoriasContador)
+                self.ddCategoria.optionArray.append(categoriasTipo[i])
+                categoriasContador+=1
+            }
         }
         self.ddCategoria.optionIds = optIdsCat
         
@@ -53,6 +64,13 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
         
         ddCategoria.didSelect{(selectedText , index ,id) in
             self.categoria = id
+        }
+        
+        if (Constantes.usuario.m_tipo == Constantes.USER_RESTAURANTERO){
+            self.tfPrecio.placeholder = "Precio por ración"
+        }
+        else{
+            self.tfPrecio.placeholder = "Precio por Kg"
         }
     }
     
@@ -70,7 +88,7 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
         }
     }
     
-    
+
     
     @IBAction func agregarProducto(_ sender: UIButton) {
         if (tfNombre.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "") {
@@ -102,7 +120,7 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
                     if error == nil {
                         
                         //el registro en firebase es correcto guardamos usuario en base de datos
-                        referencia.setData(["nombre": self.tfNombre.text!, "nombre_query": self.tfNombre.text!.lowercased(), "categoria": self.ddCategoria.optionArray[self.categoria], "descripcion": self.tvDescripcion.text!, "precio": precio, "foto":"fotosProducto/"+referencia.documentID+".png", "uid": Constantes.usuario.m_uid]){ err in
+                        referencia.setData(["nombre": self.tfNombre.text!, "nombre_query": self.tfNombre.text!.lowercased(), "categoria": self.ddCategoria.optionArray[self.categoria], "descripcion": self.tvDescripcion.text!, "precio": precio, "foto":"fotosProducto/"+referencia.documentID+".png", "uid": Constantes.usuario.m_uid]){ [self] err in
                             if let err = err {
                                 //error actualizar fireabse
                                 self.present(mostrarMsj(error: Constantes.ERROR_FOTO_FB), animated: true, completion: nil)
@@ -110,6 +128,8 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
                             else {
                                 //mensaje de confirmación
                                 self.present(mostrarMsj(error: Constantes.PRODUCTO_OK), animated: true, completion: nil)
+                                //lo agregamos en la tabla de la vista anterior
+                                delegado.agregarProducto(producto: Producto(nombre: self.tfNombre.text!, categoria: self.ddCategoria.optionArray[self.categoria], descripcion: self.tvDescripcion.text!, precio: precio, imagen: self.foto, uidProducto: referencia.documentID, uidVendedor: Constantes.usuario.m_uid!))
                                 //reseteamos los valores para seguir agregando
                                 self.tfNombre.text = ""
                                 self.categoria = -1
@@ -117,7 +137,9 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
                                 self.ddCategoria.text = ""
                                 self.tvDescripcion.text = ""
                                 self.tfPrecio.text = ""
-                                self.imgFoto.image = nil
+                                self.foto = UIImage(named: "fotoNoDisponible")
+                                self.imgFoto.image = self.foto
+
 
                             }
                         }
@@ -139,6 +161,8 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
                     else {
                         //mensaje de confirmación
                         self.present(mostrarMsj(error: Constantes.PRODUCTO_OK), animated: true, completion: nil)
+                        //lo agregamos en la tabla de la vista anterior
+                        self.delegado.agregarProducto(producto: Producto(nombre: self.tfNombre.text!, categoria: self.ddCategoria.optionArray[self.categoria], descripcion: self.tvDescripcion.text!, precio: precio, imagen: UIImage(named: "fotoNoDisponible"), uidProducto: referencia.documentID, uidVendedor: Constantes.usuario.m_uid!))
                         //reseteamos los valores para seguir agregando
                         self.tfNombre.text = ""
                         self.categoria = -1

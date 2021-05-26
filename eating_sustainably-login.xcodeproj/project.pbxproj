@@ -23,7 +23,6 @@
 		72714639264C8580004D3067 /* RecuperarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72714638264C8580004D3067 /* RecuperarViewController.swift */; };
 		727B6FC726461ADA00D73176 /* Usuario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 727B6FC626461ADA00D73176 /* Usuario.swift */; };
 		728B5D37264F529700C2EAF0 /* CodigoQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728B5D36264F529700C2EAF0 /* CodigoQRViewController.swift */; };
-		72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FC5263134BB0053C1F2 /* HomeViewController.swift */; };
 		72973FCF263149590053C1F2 /* Registro2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FCE263149590053C1F2 /* Registro2ViewController.swift */; };
 		72973FD2263149660053C1F2 /* Registro3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FD1263149660053C1F2 /* Registro3ViewController.swift */; };
 		72973FD5263149750053C1F2 /* Registro4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72973FD4263149750053C1F2 /* Registro4ViewController.swift */; };
@@ -67,7 +66,6 @@
 		72714638264C8580004D3067 /* RecuperarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecuperarViewController.swift; sourceTree = "<group>"; };
 		727B6FC626461ADA00D73176 /* Usuario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Usuario.swift; sourceTree = "<group>"; };
 		728B5D36264F529700C2EAF0 /* CodigoQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodigoQRViewController.swift; sourceTree = "<group>"; };
-		72973FC5263134BB0053C1F2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		72973FCE263149590053C1F2 /* Registro2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro2ViewController.swift; sourceTree = "<group>"; };
 		72973FD1263149660053C1F2 /* Registro3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro3ViewController.swift; sourceTree = "<group>"; };
 		72973FD4263149750053C1F2 /* Registro4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Registro4ViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +132,10 @@
 				726589062658C6D4009FF947 /* TiendaTableViewCell.swift */,
 				A3906EE1263112AD007271D2 /* Constantes.swift */,
 				727B6FC626461ADA00D73176 /* Usuario.swift */,
+				A3BBAE212652D1080074EA0D /* FeedTableViewCell.swift */,
+				A342C3502652E963008050DA /* FeedPost.swift */,
+				A383C32B26524A9500300841 /* FAQS.swift */,
+				A3BBAE1C2652CF9A0074EA0D /* FeedTableViewCell.xib */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -170,12 +172,6 @@
 				A3906EE02631128B007271D2 /* helpers */,
 				A3E6B8D52630F0DA00CDA0E6 /* View Controllers */,
 				A3E6B8B72630F07900CDA0E6 /* AppDelegate.swift */,
-				A383C3112652469C00300841 /* ViewControllerFAQ.swift */,
-				A3BBAE212652D1080074EA0D /* FeedTableViewCell.swift */,
-				A3BBAE1C2652CF9A0074EA0D /* FeedTableViewCell.xib */,
-				A3BBAE182652C62F0074EA0D /* FeedTableViewController.swift */,
-				A342C3502652E963008050DA /* FeedPost.swift */,
-				A383C32B26524A9500300841 /* FAQS.swift */,
 				A3E6B8B92630F07900CDA0E6 /* SceneDelegate.swift */,
 				A3E6B8BD2630F07900CDA0E6 /* Main.storyboard */,
 				A3E6B8C02630F07C00CDA0E6 /* Assets.xcassets */,
@@ -200,10 +196,10 @@
 				72AB7A40264FB0C0006E39A2 /* BuscarViewController.swift */,
 				A3E6B8BB2630F07900CDA0E6 /* PortadaViewController.swift */,
 				A3E6B8CF2630F0BE00CDA0E6 /* LogInViewController.swift */,
-				72973FC5263134BB0053C1F2 /* HomeViewController.swift */,
 				72714638264C8580004D3067 /* RecuperarViewController.swift */,
 				A3E6B8CC2630F0A800CDA0E6 /* Registro1ViewController.swift */,
 				72973FCE263149590053C1F2 /* Registro2ViewController.swift */,
+				A3BBAE182652C62F0074EA0D /* FeedTableViewController.swift */,
 				72973FD1263149660053C1F2 /* Registro3ViewController.swift */,
 				72973FD4263149750053C1F2 /* Registro4ViewController.swift */,
 				7239ED8C26469EE900670F16 /* ListaValidarTableViewController.swift */,
@@ -213,6 +209,7 @@
 				720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */,
 				720FFFEC264FAA2800A452AE /* BloquearViewController.swift */,
 				A38E393D265C6B3D003080B8 /* ViewControllerCrearPublicacion.swift */,
+				A383C3112652469C00300841 /* ViewControllerFAQ.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -363,7 +360,6 @@
 				A3E6B8BA2630F07900CDA0E6 /* SceneDelegate.swift in Sources */,
 				726589042658C126009FF947 /* TiendaViewController.swift in Sources */,
 				13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */,
-				72973FC6263134BB0053C1F2 /* HomeViewController.swift in Sources */,
 				A383C3122652469C00300841 /* ViewControllerFAQ.swift in Sources */,
 				726E4779264CB118007E60E5 /* PerfilViewController.swift in Sources */,
 				A3906EE2263112AD007271D2 /* Constantes.swift in Sources */,
