@@ -73,6 +73,7 @@ struct Constantes {
     static let PRECIO_NUMERO = 31
     static let PRODUCTO_OK = 32
     static let TIENDA_VACIA = 33
+    static let PUBLICACION_OK = 34
 
 
 
@@ -242,6 +243,10 @@ func mostrarMsj(error: Int, hand : ((UIAlertAction)->Void)? = nil) -> UIAlertCon
     case Constantes.TIENDA_VACIA:
         titulo = "Aviso"
         mensaje = "La tienda está vacía, agrega productos"
+        break
+    case Constantes.PUBLICACION_OK:
+        titulo = "Proceso completado"
+        mensaje = "Se ha publicado tu cometnario"
         break
     
     case Constantes.DEFAULT:

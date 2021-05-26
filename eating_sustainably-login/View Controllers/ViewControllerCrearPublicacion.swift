@@ -28,7 +28,8 @@ class ViewControllerCrearPublicacion: UIViewController {
         
         db.collection("posts").addDocument(data: ["likes": 0, "name": Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido! , "post": tfPost.text!])
         
-        self.present(mostrarMsj(error: Constantes.VALIDAR_VACIO, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}),
+        //mensaje de confirmación y vuelta al feed general
+        self.present(mostrarMsj(error: Constantes.PUBLICACION_OK, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}),
                 animated: true, completion: nil)
         
     }
