@@ -345,6 +345,7 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - youtube-ios-player-helper (1.0.3)
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -354,6 +355,7 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - FirebaseUI/Storage
   - iOSDropDown
+  - youtube-ios-player-helper
 
 SPEC REPOS:
   trunk:
@@ -380,6 +382,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -405,7 +408,8 @@ SPEC CHECKSUMS:
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  youtube-ios-player-helper: 0185c57db23c80d63d6ca11251d110abb8a4ca61
 
-PODFILE CHECKSUM: 1182a370fa9a69016988174727809e28f0e2d6be
+PODFILE CHECKSUM: 5153b460e0f98a2fbb6fa0c040abbc8e028d45fe
 
 COCOAPODS: 1.10.1

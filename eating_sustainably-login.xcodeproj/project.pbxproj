@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		088A033846E9DB16B9C71EA2 /* Pods_eating_sustainably_login.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */; };
+		137DA7A3265F0EEE00340145 /* VerVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DA7A2265F0EEE00340145 /* VerVideoViewController.swift */; };
 		13E0768126520D6700F79CB5 /* MapaUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */; };
 		13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */; };
 		720FFFE9264FA6DA00A452AE /* BuscadorFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		137DA7A2265F0EEE00340145 /* VerVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerVideoViewController.swift; sourceTree = "<group>"; };
 		13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaUsuarioViewController.swift; sourceTree = "<group>"; };
 		13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarPerfilUsuarioViewController.swift; sourceTree = "<group>"; };
 		5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eating_sustainably_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 		A3E6B8D52630F0DA00CDA0E6 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				137DA7A2265F0EEE00340145 /* VerVideoViewController.swift */,
 				7265890C2658D29B009FF947 /* AgregarProductoViewController.swift */,
 				726589032658C126009FF947 /* TiendaViewController.swift */,
 				722A61D9265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift */,
@@ -362,6 +365,7 @@
 				13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */,
 				A383C3122652469C00300841 /* ViewControllerFAQ.swift in Sources */,
 				726E4779264CB118007E60E5 /* PerfilViewController.swift in Sources */,
+				137DA7A3265F0EEE00340145 /* VerVideoViewController.swift in Sources */,
 				A3906EE2263112AD007271D2 /* Constantes.swift in Sources */,
 				A342C3512652E963008050DA /* FeedPost.swift in Sources */,
 			);
