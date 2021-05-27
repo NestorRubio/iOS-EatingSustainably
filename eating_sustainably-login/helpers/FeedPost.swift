@@ -14,13 +14,15 @@ class FeedPost{
     var content : String
     var likes : Int
     var timeStamp : Date
+    var postImage : String
+    var uid : String
     
-    init(author : String, content : String, likes : Int, timeStamp: Date) {
+   /* init(author : String, content : String, likes : Int, timeStamp: Date) {
         self.author = author
         self.content = content
         self.likes = likes
         self.timeStamp = timeStamp
-    }
+    }*/
     
     init(withDoc: QueryDocumentSnapshot) {
                 
@@ -28,5 +30,11 @@ class FeedPost{
                 self.content = withDoc.get("post") as? String ?? "no post"
                 self.likes = withDoc.get("likes") as? Int ?? 0
                 self.timeStamp = withDoc.get("timestamp") as? Date ?? Date()
+                self.postImage = withDoc.get("foto") as? String ?? ""
+                self.uid = withDoc.get("uid") as? String ?? ""
             }
+    
+    public func getFoto()->String{
+        return postImage
+    }
 }

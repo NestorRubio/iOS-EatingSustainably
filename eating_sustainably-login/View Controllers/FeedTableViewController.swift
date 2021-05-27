@@ -17,6 +17,7 @@ class FeedTableViewController: UITableViewController {
     @IBOutlet weak var btnPublicar: UIBarButtonItem!
     
     let identifier = "FeedTableViewCell"
+    let identifier2 = "TableViewCellPhoto"
     
     private var posts = [FeedPost]()
     private var postsCollectionRef : CollectionReference!
@@ -24,7 +25,12 @@ class FeedTableViewController: UITableViewController {
     func prepareCell(){
         let nib = UINib(nibName: identifier, bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: identifier)
+        
+        //let nib2 = UINib(nibName: identifier2, bundle: nil)
+        //tableView.register(nib2, forCellReuseIdentifier: identifier2)
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +106,16 @@ class FeedTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
+    
+    /*override func viewWillAppear(_ animated: Bool) {
+        self.tableView.estimatedRowHeight = 100
+        self.tableView.rowHeight = UITableView.automaticDimension
+    }*/
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return posts.count
@@ -109,11 +124,25 @@ class FeedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! FeedTableViewCell
         
+        /*let cell2 = tableView.dequeueReusableCell(withIdentifier: identifier2, for: indexPath) as! TableViewCellPhoto
+        
+        
+        if(posts[indexPath.row].getFoto() == "nil"){
+            let post = posts[indexPath.row]
+            cell2.configure(post: post)
+            return cell2
+            //agregar metodo configure
+        }
+        else{
+            let post = posts[indexPath.row]
+            cell.configure(with: post)
+            return cell
+        }*/
+        
         let post = posts[indexPath.row]
         cell.configure(with: post)
-        // Configure the cell...
-
         return cell
+        
     }
     
     
