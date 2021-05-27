@@ -20,9 +20,7 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var btnContinuar: UIButton!
     @IBOutlet weak var lbValidar: UILabel!
     @IBOutlet weak var tfLinkVideo: UITextField!
-    
-    var iDVideo : String = "" // ID del video
-    
+        
     var placeholder : String = "Escribe tu historia personal"
 
     override func viewDidLoad() {
@@ -76,23 +74,6 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    // Funcion para conseguir el ID del video
-    func getIDVideo() {
-        if let auxLink = self.tfLinkVideo.text {
-            // Cuando el link al video se copia del search bar
-            let indexStrt = auxLink.firstIndex(of: "=")!
-            let index = auxLink.index(indexStrt, offsetBy: 1)
-            // Recupera solo el ID del video
-            self.iDVideo = String(auxLink[index..<auxLink.endIndex])
-        }
-        else if let auxLink = self.tfLinkVideo.text {
-            // Cuando el link al video se copia del boton de compartir
-            let indexStrt = auxLink.firstIndex(of: "/")!
-            let index = auxLink.index(indexStrt, offsetBy: 1)
-            // Recupera solo el ID del video
-            self.iDVideo = String(auxLink[index..<auxLink.endIndex])
-        }
-    }
     
     // MARK: - Navigation
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -130,14 +111,11 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
                         //guardamos datos en variable usuario
                         Constantes.usuario.m_uid = result!.user.uid
                         Constantes.usuario.m_informacion = self.tfInformacion.text!
-                        Constantes.usuario.m_negocio = self.tfNombreNegocio.text!
-                        // Llama la funcion
-                        self.getIDVideo()
-                        Constantes.usuario.m_video = self.iDVideo
+
 
 
                         //el registro en firebase es correcto guardamos usuario en base de datos
-                        Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "nombre_query": Constantes.usuario.m_nombre!.lowercased(), "apellido":Constantes.usuario.m_apellido!, "apellido_query":Constantes.usuario.m_apellido!.lowercased(), "email":Constantes.usuario.m_email!, "email_query":Constantes.usuario.m_email!.lowercased(), "tipo":Constantes.usuario.m_tipo!, "informacion": self.tfInformacion.text!,"foto":"", "video": self.iDVideo])
+                        Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "nombre_query": Constantes.usuario.m_nombre!.lowercased(), "apellido":Constantes.usuario.m_apellido!, "apellido_query":Constantes.usuario.m_apellido!.lowercased(), "email":Constantes.usuario.m_email!, "email_query":Constantes.usuario.m_email!.lowercased(), "tipo":Constantes.usuario.m_tipo!, "informacion": self.tfInformacion.text!,"foto":""])
                         
                         let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
                         
@@ -182,7 +160,7 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
             
             Constantes.usuario.m_informacion = self.tfInformacion.text!
             Constantes.usuario.m_negocio = self.tfNombreNegocio.text!
-            Constantes.usuario.m_video = self.iDVideo // ID del video en Constantes
+            Constantes.usuario.m_video = self.tfLinkVideo.text! // ID del video en Constantes
             
             let viewR3 = segue.destination as! Registro3ViewController
             viewR3.contraseña = self.contraseña

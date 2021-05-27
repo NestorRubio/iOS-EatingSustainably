@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import youtube_ios_player_helper
 
-class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, protocoloActualizar {
+class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, protocoloActualizar, UIWebViewDelegate {
 
     @IBOutlet weak var fotoPerfil: UIImageView!
     
@@ -16,18 +17,18 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var btnEliminar: UIButton!
     @IBOutlet weak var btnTienda: UIButton!
     @IBOutlet weak var btnEditar: UIButton!
-    @IBOutlet weak var btnVideo: UIButton!
     @IBOutlet weak var btnLocalizacion: UIButton!
     @IBOutlet weak var btnModificar: UIButton!
+    @IBOutlet weak var btnVideo: UIButton!
     
     @IBOutlet weak var lbNombreUsuario: UILabel!
     @IBOutlet weak var lbCorreoUsuario: UILabel!
     @IBOutlet weak var historiaUsuario: UITextView!
-    @IBOutlet weak var lbVideo: UILabel!
     @IBOutlet weak var lbHistoria: UILabel!
     @IBOutlet weak var lbLocalizame: UILabel!
     @IBOutlet weak var lbTelefono: UILabel!
     @IBOutlet weak var lbTienda: UILabel!
+    
     
     var usuarioVerPerfil : Usuario!
     var ver : Bool = false
@@ -66,8 +67,6 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             
             btnLocalizacion.isHidden = false
             lbLocalizame.isHidden = false
-            lbVideo.isHidden = false
-            btnVideo.isHidden = false
             btnQR.isHidden = false
             lbTienda.isHidden = false
             btnTienda.isHidden = false
@@ -77,19 +76,24 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             //muestra tienda
             btnTienda.setTitle(Constantes.usuario.m_negocio, for: .normal)
             lbHistoria.text = "Mi historia"
+            if (Constantes.usuario.m_video != ""){
+                btnVideo.isHidden = false
+            }
+            else {
+                btnVideo.isHidden = true
+            }
 
         }
         else {
             // Si el usuario no es agricultor, restaurantero o tendero no muestra el boton de localizacion
             btnLocalizacion.isHidden = true
             lbLocalizame.isHidden = true
-            btnVideo.isHidden = true
-            lbVideo.isHidden = true
             btnQR.isHidden = true
             lbTienda.isHidden = true
             btnTienda.isHidden = true
             lbHistoria.text = "Información personal"
             lbTelefono.isHidden = true
+            btnVideo.isHidden = true
     
         }
         
@@ -101,6 +105,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             button.isEnabled = false
             navigationItem.rightBarButtonItems = []
             btnEditar.isHidden = true
+            
             
             if (Constantes.usuario.m_tipo != Constantes.USER_ADMIN){
                 btnBloquear.isHidden = true
@@ -129,8 +134,6 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
                 //usuario vendedor
                 btnLocalizacion.isHidden = false
                 lbLocalizame.isHidden = false
-                lbVideo.isHidden = false
-                btnVideo.isHidden = false
                 lbTienda.isHidden = false
                 btnTienda.isHidden = false
                 // Muestra el telefono
@@ -139,18 +142,23 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
                 //muestra tienda
                 btnTienda.setTitle(usuarioVerPerfil.m_negocio, for: .normal)
                 lbHistoria.text = "Mi historia"
+                if (usuarioVerPerfil.m_video != ""){
+                    btnVideo.isHidden = false
+                }
+                else {
+                    btnVideo.isHidden = true
+                }
 
             }
             else {
                 // Si el usuario no es agricultor, restaurantero o tendero no muestra el boton de localizacion
                 btnLocalizacion.isHidden = true
                 lbLocalizame.isHidden = true
-                btnVideo.isHidden = true
-                lbVideo.isHidden = true
                 lbTienda.isHidden = true
                 btnTienda.isHidden = true
                 lbHistoria.text = "Información personal"
                 lbTelefono.isHidden = true
+                btnVideo.isHidden = true
         
             }
             // Muestra el nombre del usuario
@@ -272,7 +280,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             let viewTienda = segue.destination as! TiendaViewController
             viewTienda.ver = self.ver
             viewTienda.usuarioVerPerfil = self.usuarioVerPerfil
-        } else if segue.identifier == "ver_video" {
+        } else if segue.identifier == "perfil_video" {
             let viewVideo = segue.destination as! VerVideoViewController
             viewVideo.ver = self.ver
             viewVideo.usuarioVerPerfil = self.usuarioVerPerfil

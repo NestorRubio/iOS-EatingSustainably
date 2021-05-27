@@ -8,37 +8,34 @@
 import UIKit
 import youtube_ios_player_helper
 
-class VerVideoViewController: UIViewController, YTPlayerViewDelegate {
+class VerVideoViewController: UIViewController, YTPlayerViewDelegate, UIWebViewDelegate  {
     
-    @IBOutlet weak var playerView: YTPlayerView!
     @IBOutlet weak var lbNegocio: UILabel!
     @IBOutlet weak var lbDueno: UILabel!
 
     var usuarioVerPerfil : Usuario!
     var ver : Bool = false
     
-    var idVideo : String = ""
+    @IBOutlet weak var video: WKWebView!
+    
+    var idVideo : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         if self.ver == true {
-            lbDueno.text = usuarioVerPerfil.m_nombre!
+            lbDueno.text = usuarioVerPerfil.m_nombre! + " " + usuarioVerPerfil.m_apellido!
             lbNegocio.text = usuarioVerPerfil.m_negocio!
             idVideo = usuarioVerPerfil.m_video!
         } else {
-            lbDueno.text = Constantes.usuario.m_nombre
-            lbNegocio.text = Constantes.usuario.m_negocio
+            lbDueno.text = Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido!
+            lbNegocio.text = Constantes.usuario.m_negocio!
             idVideo = Constantes.usuario.m_video!
         }
-        playerView.delegate = self
-        playerView.load(withVideoId: idVideo, playerVars: ["playsinline": 1])
-        
+        video.load(URLRequest(url: URL(string: idVideo!)!))
     }
     
-    func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
-        playerView.playVideo()
-    }
+
     
     
     
