@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class EliminarViewController: UIViewController {
     
@@ -19,10 +20,24 @@ class EliminarViewController: UIViewController {
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var bttnDelAccount: UIButton!
     
+    let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Eliminar usuario"
+        
+        if ver == true{
+            lbCorreo.isHidden = true
+            tfCorreo.isHidden = true
+            lbPassword.isHidden = true
+            tfPassword.isHidden = true
+        }else{
+            lbCorreo.isHidden = false
+            tfCorreo.isHidden = false
+            lbPassword.isHidden = false
+            tfPassword.isHidden = false
+        }
+        
 
         // Do any additional setup after loading the view.
         let alertController = UIAlertController(title: "Aviso", message: "Una vez eliminada una cuenta, esta no podra ser recuperada. ", preferredStyle: .alert)
@@ -66,13 +81,25 @@ class EliminarViewController: UIViewController {
         })
     }
     
+    func regresar(action : UIAlertAction){
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     
     @IBAction func borrarCuenta(_ sender: UIButton) {
-        deleteAccount(email: tfCorreo.text!, currentPassword: tfPassword.text!){(error) in
-            if error == nil{
-                print("error")
-            }else{
-                print("exito")
+        if ver == true {
+            usuarioVerPerfil.m_estado = 3
+            db.collection("users").document(usuarioVerPerfil.m_uid!).setData(["estado" : 3], merge: true)
+            let alertController = UIAlertController(title: "Aviso", message: "El usuario ha sido eliminado", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Entendido", style: .default, handler: regresar))
+            self.present(alertController, animated: true, completion: nil)
+        }else{
+            deleteAccount(email: tfCorreo.text!, currentPassword: tfPassword.text!){(error) in
+                if error == nil{
+                    print("error")
+                }else{
+                    print("exito")
+                }
             }
         }
     }

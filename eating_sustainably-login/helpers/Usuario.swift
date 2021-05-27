@@ -19,6 +19,7 @@ class Usuario: NSObject {
     var m_foto : String?
     var m_informacion : String?
     var m_imagen : UIImage?
+    var m_estado : Int?
     
     //variables solo para tipo vendedor
     var m_video : String?
@@ -27,7 +28,7 @@ class Usuario: NSObject {
     var m_categorias : [Int]
     var m_telefono : String?
     
-    init(nombre : String? = nil, apellido : String? = nil, email : String? = nil, tipo : Int? = nil, uid : String? = nil, latitud : Double? = nil, longitud : Double? = nil, foto : String? = nil, info : String? = nil, video : String? = nil, negocio : String? = nil, proceso : String? = nil, categorias : [Int] = [], tlf : String? = nil){
+    init(nombre : String? = nil, apellido : String? = nil, email : String? = nil, tipo : Int? = nil, uid : String? = nil, latitud : Double? = nil, longitud : Double? = nil, foto : String? = nil, info : String? = nil, video : String? = nil, negocio : String? = nil, proceso : String? = nil, categorias : [Int] = [], tlf : String? = nil, estado : Int? = nil){
         self.m_nombre = nombre
         self.m_apellido = apellido
         self.m_email = email
@@ -42,6 +43,7 @@ class Usuario: NSObject {
         self.m_proceso = proceso
         self.m_categorias = categorias
         self.m_telefono = tlf
+        self.m_estado = estado
     }
 
 }

@@ -605,7 +605,7 @@
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" image="person.badge.minus.fill" catalog="system"/>
                                 <connections>
-                                    <segue destination="NEe-M7-HZi" kind="show" identifier="perfil_bloquear" id="WcS-MC-N0L"/>
+                                    <segue destination="NEe-M7-HZi" kind="presentation" identifier="perfil_bloquear" id="WcS-MC-N0L"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJf-Js-b9I">
@@ -1088,25 +1088,44 @@
             <objects>
                 <viewController id="NEe-M7-HZi" customClass="BloquearViewController" customModule="eating_sustainably_login" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eHu-c6-EZx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Bloquear usuario" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVW-Aa-Pnm">
-                                <rect key="frame" x="110" y="320" width="154" height="26"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xXR-Cb-9bi">
+                                <rect key="frame" x="70" y="255" width="234" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Bloquear usuario">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="bloquear:" destination="NEe-M7-HZi" eventType="touchUpInside" id="P0w-2e-E7c"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ab-VP-9NT">
+                                <rect key="frame" x="63" y="323" width="249" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Desbloquear usuario">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="desbloquear:" destination="NEe-M7-HZi" eventType="touchUpInside" id="Jz0-6R-mbo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rAf-AN-DEv"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="Vdm-fN-Us9"/>
+                    <connections>
+                        <outlet property="bttnBloquear" destination="xXR-Cb-9bi" id="kiK-Cr-hKY"/>
+                        <outlet property="bttnDesbloquear" destination="2Ab-VP-9NT" id="bfk-Zz-tLq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0R-Gg-LRj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4593" y="1160"/>
+            <point key="canvasLocation" x="4592.8000000000002" y="1159.9700149925038"/>
         </scene>
         <!--Modificar Password View Controller-->
         <scene sceneID="Pvc-Wm-Ipy">
@@ -1225,9 +1244,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEJ-xz-pRo">
-                                <rect key="frame" x="135" y="417" width="105" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="abc@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQX-pH-Eme">
+                                <rect key="frame" x="16" y="156" width="188" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iEJ-xz-pRo">
+                                <rect key="frame" x="95" y="320" width="185" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Eliminar cuenta">
                                     <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
@@ -1235,12 +1261,6 @@
                                     <action selector="borrarCuenta:" destination="t74-xE-P7s" eventType="touchUpInside" id="VSN-5G-WcL"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="abc@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lQX-pH-Eme">
-                                <rect key="frame" x="16" y="156" width="188" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="s5V-Dt-ebI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1684,10 +1704,10 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="MjX-Qy-jv2"/>
+        <segue reference="IHA-xn-jqR"/>
         <segue reference="XaY-cz-4wd"/>
-        <segue reference="zMZ-jA-2KH"/>
-        <segue reference="U1w-CA-jSY"/>
+        <segue reference="HsL-b0-Z4Z"/>
+        <segue reference="5NG-zM-ebI"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="avatarPerfil" width="200" height="200"/>

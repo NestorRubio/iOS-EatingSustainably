@@ -176,7 +176,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             try Constantes.auth.signOut()
         
             let portada = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.portadaViewController) as? UINavigationController
-            Constantes.usuario = Usuario()
+            //Constantes.usuario = Usuario()
 
             //mostramos mensajes de confirmacion y vamos a portada cuando el usuario acepta
             self.present(mostrarMsj(error: Constantes.CERRAR_OK, hand: {(action) -> Void in self.view.window?.rootViewController = portada
