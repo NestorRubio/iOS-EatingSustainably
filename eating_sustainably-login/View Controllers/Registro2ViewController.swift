@@ -62,6 +62,8 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
             tfInformacion.isEditable = false
             
             btnVideo.isEnabled = false
+            
+            tfLinkVideo.text = usuarioValidar.m_video
         }
     }
     
