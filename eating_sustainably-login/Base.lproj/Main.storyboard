@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -991,16 +992,16 @@
         <scene sceneID="E0q-yE-FRL">
             <objects>
                 <tableViewController id="gLH-FX-GQc" customClass="FeedTableViewController" customModule="eating_sustainably_login" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3z9-xf-d2a">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="333" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3z9-xf-d2a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedTableViewCell" id="foY-7e-55s" customClass="FeedTableViewCell" customModule="eating_sustainably_login" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="333"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="foY-7e-55s" id="YQV-KU-I5e">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1054,36 +1055,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3M-Uz-IqA">
-                                <rect key="frame" x="159" y="504" width="56" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write something..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-ov-mnV">
+                                <rect key="frame" x="28" y="72" width="319" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" hint="dfdfdffdf"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="5ES-cR-tEn"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-p3-jxs">
+                                <rect key="frame" x="67" y="281" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="caG-Zz-BqQ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHp-cr-vUN">
+                                <rect key="frame" x="172" y="462" width="31" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Button">
+                                    <imageReference key="image" image="camera" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="agregarFoto:" destination="wM7-6G-kWX" eventType="touchUpInside" id="rdx-wK-2ez"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3M-Uz-IqA">
+                                <rect key="frame" x="159" y="546" width="56" height="30"/>
                                 <state key="normal" title="Publicar"/>
                                 <connections>
                                     <action selector="publicar:" destination="wM7-6G-kWX" eventType="touchUpInside" id="afg-DJ-vT6"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write something..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-ov-mnV">
-                                <rect key="frame" x="28" y="72" width="319" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <accessibility key="accessibilityConfiguration" hint="dfdfdffdf"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
-                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="152-aV-HR2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ejm-ov-mnV" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="28" id="1gR-hH-rom"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="bottom" secondItem="M3M-Uz-IqA" secondAttribute="bottom" constant="42" id="6DJ-l4-ONz"/>
+                            <constraint firstItem="pHp-cr-vUN" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="172" id="CBJ-zF-qkn"/>
+                            <constraint firstItem="q6G-p3-jxs" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="67" id="ZI5-Vu-NcC"/>
+                            <constraint firstItem="q6G-p3-jxs" firstAttribute="top" secondItem="ejm-ov-mnV" secondAttribute="bottom" constant="29" id="krn-e9-WJB"/>
+                            <constraint firstItem="ejm-ov-mnV" firstAttribute="top" secondItem="152-aV-HR2" secondAttribute="top" constant="28" id="lNz-Rk-g13"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="pHp-cr-vUN" secondAttribute="trailing" constant="172" id="mNk-QH-0b5"/>
+                            <constraint firstItem="pHp-cr-vUN" firstAttribute="top" secondItem="q6G-p3-jxs" secondAttribute="bottom" constant="53" id="nuG-PR-SlA"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="q6G-p3-jxs" secondAttribute="trailing" constant="68" id="pS0-hr-Ml7"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="M3M-Uz-IqA" secondAttribute="trailing" constant="160" id="r4n-QI-7fT"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="ejm-ov-mnV" secondAttribute="trailing" constant="28" id="sfJ-0c-Cz6"/>
+                            <constraint firstItem="M3M-Uz-IqA" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="159" id="uGc-2i-YNS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Iwy-7X-yca"/>
                     <connections>
+                        <outlet property="btnAgregarFoto" destination="pHp-cr-vUN" id="zhZ-PD-znw"/>
                         <outlet property="bttnPublicar" destination="M3M-Uz-IqA" id="qwm-lr-LrX"/>
+                        <outlet property="fotoPublicacion" destination="q6G-p3-jxs" id="xxq-fV-Exn"/>
                         <outlet property="tfPost" destination="ejm-ov-mnV" id="y3T-l3-U93"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jc9-XC-kKE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8017" y="-1091"/>
+            <point key="canvasLocation" x="8016.8000000000002" y="-1091.6041979010495"/>
         </scene>
         <!--Bloquear View Controller-->
         <scene sceneID="TeQ-JA-iiF">
@@ -1739,6 +1773,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="avatarPerfil" width="200" height="200"/>
+        <image name="camera" catalog="system" width="128" height="94"/>
         <image name="fotoNoDisponible" width="282" height="300"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>

@@ -11,6 +11,9 @@
 		137DA7A3265F0EEE00340145 /* VerVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137DA7A2265F0EEE00340145 /* VerVideoViewController.swift */; };
 		13E0768126520D6700F79CB5 /* MapaUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */; };
 		13E0768326521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */; };
+		2C6D87B6265F31EA000DF9BE /* TableViewCellPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D87B4265F31EA000DF9BE /* TableViewCellPhoto.swift */; };
+		2C6D87B7265F31EA000DF9BE /* TableViewCellPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C6D87B5265F31EA000DF9BE /* TableViewCellPhoto.xib */; };
+		2CFEDBCD265E0B89003F5ED1 /* CellWithPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CFEDBCB265E0B89003F5ED1 /* CellWithPhoto.swift */; };
 		720FFFE9264FA6DA00A452AE /* BuscadorFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */; };
 		720FFFED264FAA2800A452AE /* BloquearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720FFFEC264FAA2800A452AE /* BloquearViewController.swift */; };
 		722A61DA265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 722A61D9265763B200FE4EBA /* BuscarUsuariosResultadosTableViewController.swift */; };
@@ -54,6 +57,9 @@
 		137DA7A2265F0EEE00340145 /* VerVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerVideoViewController.swift; sourceTree = "<group>"; };
 		13E0768026520D6700F79CB5 /* MapaUsuarioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapaUsuarioViewController.swift; sourceTree = "<group>"; };
 		13E0768226521A0E00F79CB5 /* EditarPerfilUsuarioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditarPerfilUsuarioViewController.swift; sourceTree = "<group>"; };
+		2C6D87B4265F31EA000DF9BE /* TableViewCellPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellPhoto.swift; sourceTree = "<group>"; };
+		2C6D87B5265F31EA000DF9BE /* TableViewCellPhoto.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellPhoto.xib; sourceTree = "<group>"; };
+		2CFEDBCB265E0B89003F5ED1 /* CellWithPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithPhoto.swift; sourceTree = "<group>"; };
 		5C55D80AC03BBF3437C2AAA3 /* Pods_eating_sustainably_login.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eating_sustainably_login.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		720FFFE8264FA6DA00A452AE /* BuscadorFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuscadorFeedViewController.swift; sourceTree = "<group>"; };
 		720FFFEC264FAA2800A452AE /* BloquearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BloquearViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +144,9 @@
 				A342C3502652E963008050DA /* FeedPost.swift */,
 				A383C32B26524A9500300841 /* FAQS.swift */,
 				A3BBAE1C2652CF9A0074EA0D /* FeedTableViewCell.xib */,
+				2C6D87B4265F31EA000DF9BE /* TableViewCellPhoto.swift */,
+				2C6D87B5265F31EA000DF9BE /* TableViewCellPhoto.xib */,
+				2CFEDBCB265E0B89003F5ED1 /* CellWithPhoto.swift */,
 			);
 			path = helpers;
 			sourceTree = "<group>";
@@ -278,6 +287,7 @@
 			files = (
 				A3E6B8C42630F07C00CDA0E6 /* LaunchScreen.storyboard in Resources */,
 				A3E6B8C12630F07C00CDA0E6 /* Assets.xcassets in Resources */,
+				2C6D87B7265F31EA000DF9BE /* TableViewCellPhoto.xib in Resources */,
 				A38E393B265C5997003080B8 /* GoogleService-Info.plist in Resources */,
 				A3E6B8BF2630F07900CDA0E6 /* Main.storyboard in Resources */,
 				A3BBAE1E2652CF9A0074EA0D /* FeedTableViewCell.xib in Resources */,
@@ -337,6 +347,7 @@
 				A383C32C26524A9500300841 /* FAQS.swift in Sources */,
 				728B5D37264F529700C2EAF0 /* CodigoQRViewController.swift in Sources */,
 				72AB7A44264FB109006E39A2 /* EliminarViewController.swift in Sources */,
+				2C6D87B6265F31EA000DF9BE /* TableViewCellPhoto.swift in Sources */,
 				72973FCF263149590053C1F2 /* Registro2ViewController.swift in Sources */,
 				A3BBAE192652C62F0074EA0D /* FeedTableViewController.swift in Sources */,
 				A3E6B8BC2630F07900CDA0E6 /* PortadaViewController.swift in Sources */,
@@ -359,6 +370,7 @@
 				72AB7A4C264FB169006E39A2 /* PreguntasViewController.swift in Sources */,
 				A3E6B8CD2630F0A800CDA0E6 /* Registro1ViewController.swift in Sources */,
 				A3E6B8D02630F0BE00CDA0E6 /* LogInViewController.swift in Sources */,
+				2CFEDBCD265E0B89003F5ED1 /* CellWithPhoto.swift in Sources */,
 				727B6FC726461ADA00D73176 /* Usuario.swift in Sources */,
 				A3E6B8BA2630F07900CDA0E6 /* SceneDelegate.swift in Sources */,
 				726589042658C126009FF947 /* TiendaViewController.swift in Sources */,
