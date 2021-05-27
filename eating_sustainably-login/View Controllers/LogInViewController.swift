@@ -9,7 +9,12 @@ import UIKit
 import FirebaseAuth
 
 class LogInViewController: UIViewController {
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     @IBOutlet weak var tfEmail: UITextField!
     
@@ -79,30 +84,16 @@ class LogInViewController: UIViewController {
                     }
                     //login correcto
                     else {
-                        //miramos si el usuario está en la coleccion de usuarios no validados
-                        Constantes.db.collection("usersNoValidados").document(result?.user.uid ?? "ERROR").getDocument { (documentSnapshot, error) in
+                        //cargamos los datos
+                        Constantes.db.collection("users").document(result?.user.uid ?? "ERROR").getDocument { (documentSnapshot, error) in
                             if let document = documentSnapshot, document.exists {
-                                do {
-                                    try Constantes.auth.signOut()
-                                }
-                                catch let signOutError as NSError {
-                                    //print ("Error signing out: %@", signOutError)
-                                }
-                                self.present(mostrarMsj(error: Constantes.VALIDAR), animated: true, completion: nil)
-                                
-                            }
-                            
-                            //si el documento esta vacio es que no se ha encontrado por lo que el usuario esta validado
-                            else{
-                                //cargamos los datos
-                                Constantes.db.collection("users").document(result?.user.uid ?? "ERROR").getDocument { (documentSnapshot, error) in
-                                    if let document = documentSnapshot, document.exists {
-                                        
-                                        //Cargamos los datos de usuario en el objeto
-                                        Constantes.usuario = Usuario(nombre: document.get("nombre") as? String, apellido: document.get("apellido") as? String, email: document.get("email") as? String, tipo: document.get("tipo") as? Int, uid: document.documentID, foto: document.get("foto") as? String, info: document.get("informacion") as? String)
-
+                                //estado del usuario valido podemos logear
+                                if (document.get("estado") as? Int == 0){
+                                    //Cargamos los datos de usuario en el objeto
+                                    Constantes.usuario = Usuario(nombre: document.get("nombre") as? String, apellido: document.get("apellido") as? String, email: document.get("email") as? String, tipo: document.get("tipo") as? Int, uid: document.documentID, foto: document.get("foto") as? String, info: document.get("informacion") as? String, estado: document.get("estado") as? Int)
                                         //si es tipo vendedor cargamos datos adicionales
                                         if (document.get("tipo") as? Int == Constantes.USER_TENDERO || document.get("tipo") as? Int == Constantes.USER_AGRICULTOR || document.get("tipo") as? Int == Constantes.USER_RESTAURANTERO){
+                                            
                                             Constantes.usuario.m_latitud = document.get("latitud") as? Double
                                             Constantes.usuario.m_longitud = document.get("longitud") as? Double
                                             Constantes.usuario.m_negocio = document.get("negocio") as? String
@@ -111,7 +102,7 @@ class LogInViewController: UIViewController {
                                             Constantes.usuario.m_video = document.get("video") as? String
                                             Constantes.usuario.m_telefono = document.get("telefono") as? String
                                         }
-                                        
+                                            
                                         if (Constantes.usuario.m_foto! != ""){
                                             Constantes.storage.child(Constantes.usuario.m_foto!).getData(maxSize: 1 * 1024 * 1024) { data, error in
                                                 if let error = error {
@@ -122,17 +113,33 @@ class LogInViewController: UIViewController {
                                                 }
                                             }
                                         }
+                                    let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
+                                    self.view.window?.rootViewController = homeViewController
+                                    self.view.window?.makeKeyAndVisible()
                                             
-                                        let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
-                                        self.view.window?.rootViewController = homeViewController
-                                        self.view.window?.makeKeyAndVisible()
-                                    }
-                                    else {
+                                }
+                                else {
+                                    switch document.get("estado") as? Int {
+                                    case Constantes.CUENTA_POR_VALIDAR:
+                                        self.present(mostrarMsj(error: Constantes.VALIDAR), animated: true, completion: nil)
+                                        break
+                                    case Constantes.CUENTA_BLOQUEADA:
+                                        self.present(mostrarMsj(error: Constantes.BLOQUEADA), animated: true, completion: nil)
+                                        break
+                                    case Constantes.CUENTA_ELIMINADA:
+                                        self.present(mostrarMsj(error: Constantes.ELIMINADA), animated: true, completion: nil)
+                                        break
+
+                                    default:
                                         self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
+                                        break
                                     }
                                 }
                             }
-                        }                        
+                            else {//no encuentra el documento pero si deberia existir
+                                self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
+                            }
+                        }
                     }
                 }
             }

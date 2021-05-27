@@ -10,7 +10,13 @@ import FirebaseAuth
 import Firebase
 import iOSDropDown
 
-class Registro1ViewController: UIViewController {
+class Registro1ViewController: UIViewController, UITextFieldDelegate {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     var validar: Bool = false
     var usuarioValidar: Usuario!
@@ -27,6 +33,7 @@ class Registro1ViewController: UIViewController {
     //tipo de usuario seleccionado
     var tipoUsuario:Int = 0
 
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +42,18 @@ class Registro1ViewController: UIViewController {
         title = "Información básica"
         bttnRegistro.layer.cornerRadius = 8
         
+        tfNombre.delegate = self
+        tfApellido.delegate = self
+        tfEmail.delegate = self
+        tfPassword.delegate = self
+        tfVerPassword.delegate = self
+
+        
         //diseño dropdown
         dropDownUserType.rowBackgroundColor = .lightGray
         dropDownUserType.selectedRowColor = .green
-        
+        dropDownUserType.inputView = UIView()
+       
         //variable auxiliar para las ids
         var optIds : [Int] = []
         //bucle para tipo de usuarios que hay, el 0 es admin lo saltamos
@@ -96,7 +111,11 @@ class Registro1ViewController: UIViewController {
         return nil
     }
     
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+         return false
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (!self.validar){
             let errorDatos = validateFileds()

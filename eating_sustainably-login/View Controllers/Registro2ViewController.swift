@@ -9,6 +9,12 @@ import UIKit
 import FirebaseAuth
 
 class Registro2ViewController: UIViewController, UITextViewDelegate {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     var contraseña : String?
     var validar: Bool = false
@@ -74,6 +80,8 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    @IBAction func quitaTeclado(_ sender: UITapGestureRecognizer) { view.endEditing(true)
+    }
     
     // MARK: - Navigation
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -111,11 +119,12 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
                         //guardamos datos en variable usuario
                         Constantes.usuario.m_uid = result!.user.uid
                         Constantes.usuario.m_informacion = self.tfInformacion.text!
+                        Constantes.usuario.m_estado = 0
 
 
 
                         //el registro en firebase es correcto guardamos usuario en base de datos
-                        Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "nombre_query": Constantes.usuario.m_nombre!.lowercased(), "apellido":Constantes.usuario.m_apellido!, "apellido_query":Constantes.usuario.m_apellido!.lowercased(), "email":Constantes.usuario.m_email!, "email_query":Constantes.usuario.m_email!.lowercased(), "tipo":Constantes.usuario.m_tipo!, "informacion": self.tfInformacion.text!,"foto":""])
+                        Constantes.db.collection("users").document(result!.user.uid).setData(["nombre": Constantes.usuario.m_nombre!, "nombre_query": Constantes.usuario.m_nombre!.lowercased(), "apellido":Constantes.usuario.m_apellido!, "apellido_query":Constantes.usuario.m_apellido!.lowercased(), "email":Constantes.usuario.m_email!, "email_query":Constantes.usuario.m_email!.lowercased(), "tipo":Constantes.usuario.m_tipo!, "informacion": self.tfInformacion.text!,"foto":"", "estado": 0])
                         
                         let homeViewController = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
                         
@@ -166,8 +175,6 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
             viewR3.contraseña = self.contraseña
             viewR3.validar = self.validar
             viewR3.usuarioValidar = self.usuarioValidar
-
-
         }
     }
 }

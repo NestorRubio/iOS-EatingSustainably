@@ -10,6 +10,12 @@ import CoreLocation
 import MapKit
 
 class MapaUsuarioViewController: UIViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     @IBOutlet weak var mapaUsuario: MKMapView!
     

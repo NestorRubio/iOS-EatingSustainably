@@ -28,7 +28,8 @@ class FeedTableViewCell: UITableViewCell {
             if let document = querySnapshot, !document.isEmpty {
                 for doc in document.documents{
                     print(doc.get("foto") as! String)
-                    Constantes.storage.child(doc.get("foto") as! String).getData(maxSize: 1 * 1024 * 1024){ data, error in if let error = error{
+                    Constantes.storage.child(doc.get("foto") as! String).getData(maxSize: 1 * 1024 * 1024){ data, error in
+                        if let error = error{
                        print("Error in loading photo")
                         self.fotoPublicacion.image = UIImage(systemName: "avatarPerfil")
                     }

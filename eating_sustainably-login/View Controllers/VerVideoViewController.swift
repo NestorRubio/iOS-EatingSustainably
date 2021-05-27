@@ -8,7 +8,15 @@
 import UIKit
 import youtube_ios_player_helper
 
+
+
 class VerVideoViewController: UIViewController, YTPlayerViewDelegate, UIWebViewDelegate  {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     @IBOutlet weak var lbNegocio: UILabel!
     @IBOutlet weak var lbDueno: UILabel!
@@ -22,6 +30,7 @@ class VerVideoViewController: UIViewController, YTPlayerViewDelegate, UIWebViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Vídeo"
         
         if self.ver == true {
             lbDueno.text = usuarioVerPerfil.m_nombre! + " " + usuarioVerPerfil.m_apellido!

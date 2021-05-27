@@ -9,6 +9,12 @@ import UIKit
 import AppTrackingTransparency
 
 class PortadaViewController: UIViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
   
     @IBOutlet weak var lbTituloApp: UILabel!

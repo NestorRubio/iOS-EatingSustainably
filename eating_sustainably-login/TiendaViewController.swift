@@ -8,6 +8,12 @@
 import UIKit
 
 class TiendaViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, protocoloAgregar {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     var usuarioVerPerfil : Usuario!
     var ver : Bool = false
@@ -26,7 +32,6 @@ class TiendaViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
         tableView.allowsSelection = false
 
         //caso viendo perfil de otro usuario

@@ -10,6 +10,12 @@ import FirebaseFirestore
 import FirebaseUI
 
 class BuscarUsuariosResultadosTableViewController: UITableViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     var nombre : String!
     var apellido : String!
@@ -59,18 +65,24 @@ class BuscarUsuariosResultadosTableViewController: UITableViewController {
                 for doc in document.documents {
                     Constantes.storage.child(doc.get("foto") as! String).getData(maxSize: 1 * 1024 * 1024) { data, error in
                         if let error = error {
-                            self.present(mostrarMsj(error: Constantes.ERROR_FOTO_ST), animated: true, completion: nil)
+                            self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                         }
                         else {
-                            //si hemos recibido imagen la cargamos
-                            if let foto = UIImage(data: data!){
-                                self.listaUsuarios.append((doc.get("nombre") as! String, getUserStringName(users: (doc.get("tipo")) as! Int), foto, doc.documentID))
+                            //mostramos resultados si la cuenta esta activa o es un admin que puede ver todos
+                            if (doc.get("estado") as! Int == Constantes.CUENTA_ACTIVA || (Constantes.usuario.m_tipo == Constantes.USER_ADMIN && doc.get("estado") as! Int == Constantes.CUENTA_BLOQUEADA)){
+                                //si hemos recibido imagen la cargamos
+                                if let foto = UIImage(data: data!){
+                                    self.listaUsuarios.append((doc.get("nombre") as! String, getUserStringName(users: (doc.get("tipo")) as! Int), foto, doc.documentID))
+                                }
+                                //sino usamos placeholder
+                                else {
+                                    self.listaUsuarios.append((doc.get("nombre") as! String, getUserStringName(users: (doc.get("tipo")) as! Int), UIImage(named: "avatarPerfil")!, doc.documentID))
+                                }
                             }
-                            //sino usamos placeholder
                             else {
-                                self.listaUsuarios.append((doc.get("nombre") as! String, getUserStringName(users: (doc.get("tipo")) as! Int), UIImage(named: "avatarPerfil")!, doc.documentID))
+                                self.total-=1
                             }
-
+                            
                         }
                         //cargamos cuando esten todos los datos
                         if (self.listaUsuarios.count == self.total){
@@ -123,7 +135,7 @@ class BuscarUsuariosResultadosTableViewController: UITableViewController {
             
             Constantes.db.collection("users").document(uid).getDocument { (documentSnapshot, error) in
                 if let doc = documentSnapshot, doc.exists {
-                    self.usuarioVerPerfil = Usuario(nombre: doc.get("nombre") as? String, apellido: doc.get("apellido") as? String, email: doc.get("email") as? String, tipo: doc.get("tipo") as? Int, uid: doc.documentID, foto: doc.get("foto") as? String, info: doc.get("informacion") as? String)
+                    self.usuarioVerPerfil = Usuario(nombre: doc.get("nombre") as? String, apellido: doc.get("apellido") as? String, email: doc.get("email") as? String, tipo: doc.get("tipo") as? Int, uid: doc.documentID, foto: doc.get("foto") as? String, info: doc.get("informacion") as? String, estado: doc.get("estado") as? Int)
                     
                     //si es tipo vendedor cargamos datos adicionales
                     if (doc.get("tipo") as? Int == Constantes.USER_TENDERO || doc.get("tipo") as? Int == Constantes.USER_AGRICULTOR || doc.get("tipo") as? Int == Constantes.USER_RESTAURANTERO){
@@ -178,3 +190,4 @@ class BuscarUsuariosResultadosTableViewController: UITableViewController {
     
 
 }
+

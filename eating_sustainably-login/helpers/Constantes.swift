@@ -16,6 +16,8 @@ struct Constantes {
         static let portadaViewController = "PortadaVC"
         static let perfilViewController = "PerfilVC"
         static let splashViewController = "Splash"
+        static let buscadorViewController = "BuscarVC"
+
 
     }
     
@@ -37,6 +39,12 @@ struct Constantes {
     static let USER_CONSUMIDOR = 4
     static let USER_INGENIERO = 5
     static let USER_TOTAL = 6
+    
+    //ESTADOS DE LA CUENTA
+    static let CUENTA_ACTIVA = 0
+    static let CUENTA_POR_VALIDAR = 1
+    static let CUENTA_BLOQUEADA = 2
+    static let CUENTA_ELIMINADA = 3
     
     //MENSAJE ERROR
     static let MAIL = 0
@@ -74,8 +82,18 @@ struct Constantes {
     static let PRODUCTO_OK = 32
     static let TIENDA_VACIA = 33
     static let PUBLICACION_OK = 34
-
-
+    static let ERROR_ELIMINAR = 35
+    static let ELIMINAR_OK = 36
+    static let ERROR_BLOQUEAR = 37
+    static let BLOQUEAR_OK = 38
+    static let BLOQUEADA = 39
+    static let ELIMINADA = 40
+    static let DESBLOQUEAR_OK = 41
+    static let ERROR_DESBLOQUEAR = 42
+    static let ERROR_EMAIL = 43
+    static let PASSWORD_COINCIDE = 44
+    static let ERROR_ACTUALIZAR_PASSWORD = 45
+    static let ACTUALIZAR_PASSWORD_OK = 46
 
     static let DEFAULT = 99
     
@@ -248,7 +266,48 @@ func mostrarMsj(error: Int, hand : ((UIAlertAction)->Void)? = nil) -> UIAlertCon
         titulo = "Proceso completado"
         mensaje = "Se ha publicado tu cometnario"
         break
-    
+    case Constantes.ERROR_ELIMINAR:
+        mensaje = "No se ha podido eliminar el usuario"
+        break
+    case Constantes.ELIMINAR_OK:
+        titulo = "Usuario eliminado"
+        mensaje = "Contacta con soporte para recuperar la cuenta"
+        break
+    case Constantes.ERROR_BLOQUEAR:
+        mensaje = "No se ha podido bloquear al usuario"
+        break
+    case Constantes.BLOQUEAR_OK:
+        titulo = "Aviso"
+        mensaje = "Se ha bloqueado al usuario bloqueado con éxito"
+        break
+    case Constantes.BLOQUEADA:
+        mensaje = "Usuario bloqueado, contacta con soporte para conocer el motivo"
+        break
+    case Constantes.ELIMINADA:
+        mensaje = "Usuario elimiando, contacta con soporte para recuperar tu cuenta"
+        break
+    case Constantes.DESBLOQUEAR_OK:
+        titulo = "Aviso"
+        mensaje = "Se ha desbloqueado al usuario con éxito"
+        break
+    case Constantes.ERROR_DESBLOQUEAR:
+        mensaje = "No se ha podido desbloquear al usuario"
+        break
+    case Constantes.ERROR_EMAIL:
+        mensaje = "Escribe correctamente el e-mail de tu cuenta"
+        break
+    case Constantes.PASSWORD_COINCIDE:
+        titulo = "Error al repetir"
+        mensaje = "Las contraseñas no coinciden"
+        break
+    case Constantes.ERROR_ACTUALIZAR_PASSWORD:
+        mensaje = "No se pudo actualizar la contraseña. Intentelo de nuevo"
+        break
+    case Constantes.ACTUALIZAR_PASSWORD_OK:
+        titulo = "Operación completada"
+        mensaje = "Contraseña actualizada correctamente"
+        break
+        
     case Constantes.DEFAULT:
         mensaje = "Error al procesar la operación, vuelve a intentarlo"
         break

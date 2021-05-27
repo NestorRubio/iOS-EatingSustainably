@@ -8,6 +8,12 @@
 import UIKit
 
 class ListaValidarTableViewController: UITableViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     var listaUsuarios : [String] = []
     var usuarioValidar : Usuario!
@@ -15,7 +21,7 @@ class ListaValidarTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title="Usuarios pendientes de ser validados"
+        title="Usuarios a validar"
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false

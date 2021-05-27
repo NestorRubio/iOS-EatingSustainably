@@ -9,6 +9,12 @@ import UIKit
 import Firebase
 
 class FeedTableViewController: UITableViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     @IBOutlet weak var btnValidar: UIBarButtonItem!
     @IBOutlet weak var btnBuscar: UIBarButtonItem!
@@ -152,6 +158,7 @@ class FeedTableViewController: UITableViewController {
         
             let portada = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.portadaViewController) as? UINavigationController
             Constantes.usuario = Usuario()
+            
             //mostramos mensajes de confirmacion y vamos a portada cuando el usuario acepta
             self.present(mostrarMsj(error: Constantes.CERRAR_OK, hand: {(action) -> Void in self.view.window?.rootViewController = portada
                                         self.view.window?.makeKeyAndVisible()}), animated: true, completion: nil)

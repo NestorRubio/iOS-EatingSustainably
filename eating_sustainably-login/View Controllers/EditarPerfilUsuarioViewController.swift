@@ -15,6 +15,12 @@ protocol protocoloActualizar{
 }
 
 class EditarPerfilUsuarioViewController: UIViewController, CLLocationManagerDelegate {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     var usuarioVerPerfil : Usuario!
     var ver : Bool = false
@@ -127,6 +133,9 @@ class EditarPerfilUsuarioViewController: UIViewController, CLLocationManagerDele
         }
     }
     
+    @IBAction func quitaTeclado(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.first {
             self.lat = location.coordinate.latitude

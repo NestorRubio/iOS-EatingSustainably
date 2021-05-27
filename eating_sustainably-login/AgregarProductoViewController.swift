@@ -12,7 +12,13 @@ protocol protocoloAgregar{
     func agregarProducto(producto : Producto)
 }
 
-class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     @IBOutlet weak var tvDescripcion: UITextView!
     @IBOutlet weak var ddCategoria: DropDown!
@@ -32,6 +38,12 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Añadir producto"
+
+
+        tfNombre.delegate = self
+        tfPrecio.delegate = self
+        ddCategoria.inputView = UIView()
+
         
         //placeholder para el textview, se debe programar
         tvDescripcion.delegate = self
@@ -74,6 +86,7 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
         }
     }
     
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if tvDescripcion.textColor == UIColor.lightGray {
             tvDescripcion.text = nil
@@ -87,8 +100,19 @@ class AgregarProductoViewController: UIViewController, UITextViewDelegate, UIIma
             tvDescripcion.textColor = UIColor.lightGray
         }
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+         return false
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
     
-
+    
     
     @IBAction func agregarProducto(_ sender: UIButton) {
         if (tfNombre.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "") {

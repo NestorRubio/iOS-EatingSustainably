@@ -6,10 +6,15 @@
 //
 
 import UIKit
-import youtube_ios_player_helper
 
-class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, protocoloActualizar, UIWebViewDelegate {
-
+class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, protocoloActualizar, protocoloBloquear {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
     @IBOutlet weak var fotoPerfil: UIImageView!
     
     @IBOutlet weak var btnQR: UIButton!
@@ -28,8 +33,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var lbLocalizame: UILabel!
     @IBOutlet weak var lbTelefono: UILabel!
     @IBOutlet weak var lbTienda: UILabel!
-    
-    
+    @IBOutlet weak var lbBloqueado: UILabel!
     var usuarioVerPerfil : Usuario!
     var ver : Bool = false
     
@@ -41,7 +45,30 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
         title = "Mi Perfil"
 
         fotoPerfil.contentMode = .scaleAspectFit
-
+        
+        lbLocalizame.adjustsFontSizeToFitWidth = true
+        lbLocalizame.minimumScaleFactor = 0.5
+        
+        lbNombreUsuario.numberOfLines = 0
+        lbNombreUsuario.adjustsFontSizeToFitWidth = true
+        lbNombreUsuario.minimumScaleFactor = 0.5
+        
+        lbCorreoUsuario.numberOfLines = 0
+        lbCorreoUsuario.adjustsFontSizeToFitWidth = true
+        lbCorreoUsuario.minimumScaleFactor = 0.5
+        
+        lbHistoria.numberOfLines = 0
+        lbHistoria.adjustsFontSizeToFitWidth = true
+        lbHistoria.minimumScaleFactor = 0.5
+        
+        lbTelefono.adjustsFontSizeToFitWidth = true
+        lbTelefono.minimumScaleFactor = 0.5
+        
+        lbTienda.adjustsFontSizeToFitWidth = true
+        lbTienda.minimumScaleFactor = 0.5
+        
+        
+        
         //personalizamos el botn de cerrar para que tenga imagen y texto
         let button = UIButton(type: .system)
         button.setTitle("Cerrar sesión  ", for: .normal)
@@ -60,6 +87,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
         btnTienda.layer.cornerRadius = 8
         
         btnBloquear.isHidden = true
+        lbBloqueado.isHidden = true
 
         // Checa que el usuario sea Agricultor, Restaurantero o Tendero para mostrar el boton de localizacion
         if (Constantes.usuario.m_tipo == Constantes.USER_AGRICULTOR || Constantes.usuario.m_tipo == Constantes.USER_TENDERO || Constantes.usuario.m_tipo == Constantes.USER_RESTAURANTERO) {
@@ -113,14 +141,22 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
                 btnEditar.isHidden = true
                 btnQR.isHidden = true
                 btnModificar.isHidden = true
+
                 
             }
-            else{
+            else{//admin
                 btnBloquear.isHidden = false
                 btnEliminar.isHidden = false
                 btnEditar.isHidden = false
                 btnQR.isHidden = false
                 btnModificar.isHidden = false
+                
+                if (usuarioVerPerfil.m_estado! == Constantes.CUENTA_BLOQUEADA) {
+                    lbBloqueado.isHidden = false
+                }
+                else {
+                    lbBloqueado.isHidden = true
+                }
 
             }
             
@@ -184,7 +220,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             try Constantes.auth.signOut()
         
             let portada = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.portadaViewController) as? UINavigationController
-            //Constantes.usuario = Usuario()
+            Constantes.usuario = Usuario()
 
             //mostramos mensajes de confirmacion y vamos a portada cuando el usuario acepta
             self.present(mostrarMsj(error: Constantes.CERRAR_OK, hand: {(action) -> Void in self.view.window?.rootViewController = portada
@@ -254,6 +290,7 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
             let viewBloquear = segue.destination as! BloquearViewController
             viewBloquear.ver = self.ver
             viewBloquear.usuarioVerPerfil = self.usuarioVerPerfil
+            viewBloquear.delegado = self
         }
         else if segue.identifier == "perfil_eliminar"{
             let viewEliminar = segue.destination as! EliminarViewController
@@ -293,6 +330,18 @@ class PerfilViewController: UIViewController, UIImagePickerControllerDelegate, U
         lbNombreUsuario.text = nombre + " " + apellido
         historiaUsuario.text = info
         lbTelefono.text = tlf
+    }
+    
+    func actualizarBloquear(estado : Bool){
+        if (estado == true){//esta bloqueado
+            self.lbBloqueado.isHidden = false
+            self.usuarioVerPerfil.m_estado = Constantes.CUENTA_BLOQUEADA
+        }
+        else {
+            self.lbBloqueado.isHidden = true
+            self.usuarioVerPerfil.m_estado = Constantes.CUENTA_ACTIVA
+
+        }
     }
 }
 

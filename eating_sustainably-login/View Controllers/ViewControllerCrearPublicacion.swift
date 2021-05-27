@@ -8,7 +8,13 @@
 import UIKit
 import FirebaseFirestore
 
-class ViewControllerCrearPublicacion: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ViewControllerCrearPublicacion: UIViewController, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     @IBOutlet weak var tfPost: UITextView!
     
@@ -18,15 +24,36 @@ class ViewControllerCrearPublicacion: UIViewController, UIImagePickerControllerD
     
     @IBOutlet weak var btnAgregarFoto: UIButton!
     
+    var placeholder = "Escribe un nuevo post"
+
+    
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //placeholder para el textview
+        tfPost.delegate = self
+        tfPost.layer.borderColor = UIColor.lightGray.cgColor
+        tfPost.layer.borderWidth = 1.0
+        tfPost.text = placeholder
+        tfPost.textColor = UIColor.lightGray
+        
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if tfPost.textColor == UIColor.lightGray {
+            tfPost.text = nil
+            tfPost.textColor = UIColor.black
+        }
+    }
     
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if tfPost.text.isEmpty {
+            tfPost.text = placeholder
+            tfPost.textColor = UIColor.lightGray
+        }
+    }
     
     @IBAction func publicar(_ sender: UIButton) {
         let date = Date();

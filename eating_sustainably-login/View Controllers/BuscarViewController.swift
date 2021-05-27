@@ -9,8 +9,14 @@ import UIKit
 import iOSDropDown
 
 
-class BuscarViewController: UIViewController {
-
+class BuscarViewController: UIViewController, UITextFieldDelegate {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
     @IBOutlet weak var tfNombre: UITextField!
     @IBOutlet weak var tfApellido: UITextField!
     @IBOutlet weak var tfEmail: UITextField!
@@ -25,6 +31,19 @@ class BuscarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Buscar usuario"
+        
+        if (Constantes.auth.currentUser == nil){
+            Constantes.usuario = Usuario()
+        }
+        
+        ddTipo.inputView = UIView()
+        ddCategoria.inputView = UIView()
+        
+        tfNombre.delegate = self
+        tfApellido.delegate = self
+        tfEmail.delegate = self
+        tfNeogcio.delegate = self
+
         
         //variable auxiliar para las ids
         var optIds : [Int] = []
@@ -84,6 +103,11 @@ class BuscarViewController: UIViewController {
     }
     
 
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+         textField.resignFirstResponder()
+         return false
+    }
+    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         
         if identifier == "buscarUsuarios_resultado"{

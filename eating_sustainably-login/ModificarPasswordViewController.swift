@@ -9,6 +9,12 @@ import UIKit
 import FirebaseAuth
 
 class ModificarPasswordViewController: UIViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     var usuarioVerPerfil : Usuario!
     var ver : Bool = false
@@ -37,37 +43,51 @@ class ModificarPasswordViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    func changePassword(email : String, currentPassword : String, newPassword : String, completion: @escaping (Error) -> Void){
+    func changePassword(email : String, currentPassword : String, newPassword : String){
         
         let credential = EmailAuthProvider.credential(withEmail: email, password: currentPassword)
-        
+
         Auth.auth().currentUser?.reauthenticate(with: credential, completion: {(result, error) in
             if let error = error{
-                completion(error)
-            }else{
+                self.present(mostrarMsj(error: Constantes.FIREBASE_PASSWORD), animated: true, completion: nil)
+            }
+            else{
                 Auth.auth().currentUser?.updatePassword(to: newPassword, completion: {(error) in
-                    print("error")
+                    if let error = error{
+                        self.present(mostrarMsj(error: Constantes.ERROR_ACTUALIZAR_PASSWORD), animated: true, completion: nil)
+                    }
+                    else {
+                        self.present(mostrarMsj(error: Constantes.ACTUALIZAR_PASSWORD_OK, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}), animated: true, completion: nil)
+                    }
                 })
             }
         })
     }
     
+    @IBAction func quitaTeclado(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
     @IBAction func cambiarContraseña(_ sender: UIButton) {
-  
-        if(tfNewPassword.text! == tfNewPasswordConf.text!){
-            
-            self.changePassword(email: tfEmail.text!, currentPassword: tfContraseñaAct.text!, newPassword: tfNewPassword.text!, completion: {(error) in
-                if error == nil{
-        
-                    let alertController = UIAlertController(title: "Error", message: "No se pudo actualizar la contraseña. Intentelo de nuevo", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Entendido", style: .default))
-                    self.present(alertController, animated: true, completion: nil)
-                }else{
-                    let alertController = UIAlertController(title: "Exito!", message: "Contraseña actualizada correctamente", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Entendido", style: .default))
-                    self.present(alertController, animated: true, completion: nil)
+        if (tfEmail.text!.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfEmail.text!, tipo: Constantes.MAIL)) {
+            present(mostrarMsj(error: Constantes.MAIL), animated: true, completion: nil)
+        }
+        else{//ok email1
+            if (tfEmail.text! != Constantes.usuario.m_email){
+                present(mostrarMsj(error: Constantes.ERROR_EMAIL), animated: true, completion: nil)
+            }
+            else{//ok email2
+                if (tfContraseñaAct.text!.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfContraseñaAct.text!, tipo: Constantes.PASSWORD) || tfNewPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines) == "" || tfNewPasswordConf.text!.trimmingCharacters(in: .whitespacesAndNewlines) == "" || !isValidPattern(tfNewPassword.text!, tipo: Constantes.PASSWORD)) {
+                    present(mostrarMsj(error: Constantes.PASSWORD), animated: true, completion: nil)
                 }
-            })
+                else{//ok password1
+                    if(tfNewPassword.text! != tfNewPasswordConf.text!){
+                        present(mostrarMsj(error: Constantes.PASSWORD_COINCIDE), animated: true, completion: nil)
+                    }
+                    else {//ok password2
+                        self.changePassword(email: tfEmail.text!, currentPassword: tfContraseñaAct.text!, newPassword: tfNewPassword.text!)
+                    }
+                }
+            }
         }
     }
     

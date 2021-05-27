@@ -8,7 +8,12 @@
 import UIKit
 
 class Registro3ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     var contraseña : String?
     var validar: Bool = false
@@ -63,6 +68,14 @@ class Registro3ViewController: UIViewController, UITableViewDelegate, UITableVie
 
     }
     
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if tvInfNegocio.textColor == UIColor.lightGray {

@@ -8,23 +8,32 @@
 import UIKit
 import FirebaseFirestore
 
+protocol protocoloBloquear{
+    func actualizarBloquear(estado : Bool)
+}
+
 
 class BloquearViewController: UIViewController {
-    
-    let db = Firestore.firestore()
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     @IBOutlet weak var bttnBloquear: UIButton!
     @IBOutlet weak var bttnDesbloquear: UIButton!
     
     var usuarioVerPerfil : Usuario!
     var ver : Bool = false
+    var delegado : protocoloBloquear!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Bloquear usuario"
 
         // Do any additional setup after loading the view.
-        if usuarioVerPerfil.m_estado == 0{
+        if usuarioVerPerfil.m_estado! == Constantes.CUENTA_ACTIVA{
             bttnDesbloquear.isHidden = true
             bttnDesbloquear.isEnabled = false
             bttnBloquear.isHidden = false
@@ -42,19 +51,31 @@ class BloquearViewController: UIViewController {
     }
     
     @IBAction func bloquear(_ sender: Any) {
-        usuarioVerPerfil.m_estado = 2
-        db.collection("users").document(usuarioVerPerfil.m_uid!).setData(["estado" : 2], merge: true)
-        let alertController = UIAlertController(title: "Aviso", message: "Se ha bloqueado al usuario", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Entendido", style: .default, handler: regresar))
-        self.present(alertController, animated: true, completion: nil)
+        Constantes.db.collection("users").document(usuarioVerPerfil.m_uid!).updateData(["estado" : Constantes.CUENTA_BLOQUEADA]){ [self] err in
+            if let err = err {
+                //error actualizar fireabse
+                self.present(mostrarMsj(error: Constantes.ERROR_BLOQUEAR), animated: true, completion: nil)
+            }
+            else {
+                self.delegado.actualizarBloquear(estado: true)
+                self.present(mostrarMsj(error: Constantes.BLOQUEAR_OK, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}),
+                        animated: true, completion: nil)
+            }
+        }
     }
     
     @IBAction func desbloquear(_ sender: Any) {
-        usuarioVerPerfil.m_estado = 0
-        db.collection("users").document(usuarioVerPerfil.m_uid!).setData(["estado" : 0], merge: true)
-        let alertController = UIAlertController(title: "Aviso", message: "Se ha desbloqueado al usuario", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Entendido", style: .default, handler: regresar))
-        self.present(alertController, animated: true, completion: nil)
+        Constantes.db.collection("users").document(usuarioVerPerfil.m_uid!).updateData(["estado" : Constantes.CUENTA_ACTIVA]){ [self] err in
+            if let err = err {
+                //error actualizar fireabse
+                self.present(mostrarMsj(error: Constantes.ERROR_DESBLOQUEAR), animated: true, completion: nil)
+            }
+            else {
+                self.delegado.actualizarBloquear(estado: false)
+                self.present(mostrarMsj(error: Constantes.DESBLOQUEAR_OK, hand: {(action) -> Void in self.navigationController?.popViewController(animated: true)}),
+                        animated: true, completion: nil)
+            }
+        }
     }
     
     /*

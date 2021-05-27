@@ -8,7 +8,12 @@
 import UIKit
 
 class ViewControllerFAQ: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
     /*var FAQ = [FAQS(pregunta: "¿Cómo reestablezco mi contraseña?", respuesta: "En la página de inicio de sesión. Presionar el botón 'He olvidado mi contraseña' e introducir su correo. Recibirá un correo para reestablecer su contraseña"), FAQS(pregunta: "¿Cómo reviso la ubicación de un vendedor?", respuesta: "Al entrar al perfil del vendedor viene una mapa con la opcion de abrirlo y obtener direcciones"), FAQS(pregunta: "¿Cómo actualizo mi perfil de vendedor?", respuesta: "Si usted es un vendedor y quiere actualizar su perfil: Entre a la pestaña de perfil en la parte inferior derecha de la aplicacion y ahí puede editar."),FAQS(pregunta: "¿Cómo me pongo en contacto con el administrador?", respuesta: "Debe enviar un correo a la dirección: admin@gmail.com exponiendo su caso"),]
     */
     var FAQ : [FAQS] = []

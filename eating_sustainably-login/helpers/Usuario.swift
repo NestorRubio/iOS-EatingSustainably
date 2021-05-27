@@ -28,6 +28,7 @@ class Usuario: NSObject {
     var m_categorias : [Int]
     var m_telefono : String?
     
+    
     init(nombre : String? = nil, apellido : String? = nil, email : String? = nil, tipo : Int? = nil, uid : String? = nil, latitud : Double? = nil, longitud : Double? = nil, foto : String? = nil, info : String? = nil, video : String? = nil, negocio : String? = nil, proceso : String? = nil, categorias : [Int] = [], tlf : String? = nil, estado : Int? = nil){
         self.m_nombre = nombre
         self.m_apellido = apellido

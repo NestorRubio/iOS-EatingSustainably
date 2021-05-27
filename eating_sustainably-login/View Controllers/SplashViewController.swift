@@ -8,7 +8,12 @@
 import UIKit
 
 class SplashViewController: UIViewController {
-    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     @IBOutlet weak var lbTitulo: UILabel!
     override func viewDidLoad() {
@@ -26,7 +31,7 @@ class SplashViewController: UIViewController {
                         if let document = documentSnapshot, document.exists {
 
                             //Cargamos los datos de usuario en el objeto
-                            Constantes.usuario = Usuario(nombre: document.get("nombre") as? String, apellido: document.get("apellido") as? String, email: document.get("email") as? String, tipo: document.get("tipo") as? Int, uid: document.documentID, foto: document.get("foto") as? String, info: document.get("informacion") as? String)
+                            Constantes.usuario = Usuario(nombre: document.get("nombre") as? String, apellido: document.get("apellido") as? String, email: document.get("email") as? String, tipo: document.get("tipo") as? Int, uid: document.documentID, foto: document.get("foto") as? String, info: document.get("informacion") as? String, estado: document.get("estado") as? Int)
                             
                             if (Constantes.usuario.m_foto! != ""){
                                 Constantes.storage.child(Constantes.usuario.m_foto!).getData(maxSize: 1 * 1024 * 1024) { data, error in

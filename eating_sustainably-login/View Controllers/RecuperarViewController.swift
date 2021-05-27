@@ -9,6 +9,12 @@ import UIKit
 import FirebaseAuth
 
 class RecuperarViewController: UIViewController {
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
 
     @IBOutlet weak var tfEmail: UITextField!
     override func viewDidLoad() {

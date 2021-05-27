@@ -8,7 +8,13 @@
 import UIKit
 
 class CodigoQRViewController: UIViewController {
-
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
+    }
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
     @IBOutlet weak var imgQR: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
