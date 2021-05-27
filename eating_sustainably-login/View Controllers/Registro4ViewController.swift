@@ -188,12 +188,21 @@ class Registro4ViewController: UIViewController, CLLocationManagerDelegate {
                     self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                 } else {
                     
-                    //mostramos mensaje de confimacion y volvemos a portada
-                    let home = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
-                    
-                    //mostramos mensajes de confirmacion y vamos a portada cuando el usuario acepta
-                    self.present(mostrarMsj(error: Constantes.VALIDAR_OK, hand: {(action) -> Void in self.view.window?.rootViewController = home
-                                                self.view.window?.makeKeyAndVisible()}), animated: true, completion: nil)                }
+                    Constantes.db.collection("users").document(self.usuarioValidar.m_uid!).updateData(["estado" : Constantes.CUENTA_ACTIVA]){ [self] err in
+                        if let err = err {
+                            //error actualizar fireabse
+                            self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
+                        }
+                        else {
+                            //mostramos mensaje de confimacion y volvemos a portada
+                            let home = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.homeViewController) as? UITabBarController
+                            
+                            //mostramos mensajes de confirmacion y vamos a portada cuando el usuario acepta
+                            self.present(mostrarMsj(error: Constantes.VALIDAR_OK, hand: {(action) -> Void in self.view.window?.rootViewController = home
+                                                        self.view.window?.makeKeyAndVisible()}), animated: true, completion: nil)
+                        }
+                    }
+                }
             }
         }
     }

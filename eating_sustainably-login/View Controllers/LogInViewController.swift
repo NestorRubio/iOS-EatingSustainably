@@ -134,6 +134,15 @@ class LogInViewController: UIViewController {
                                         self.present(mostrarMsj(error: Constantes.DEFAULT), animated: true, completion: nil)
                                         break
                                     }
+                                    do {
+                                        try Constantes.auth.signOut()
+                                    
+                                        let portada = self.storyboard?.instantiateViewController(identifier: Constantes.Storyboard.portadaViewController) as? UINavigationController
+                                        Constantes.usuario = Usuario()
+                                    }
+                                    catch let signOutError as NSError {
+                                        self.present(mostrarMsj(error: Constantes.ERROR_CERRAR), animated: true, completion: nil)
+                                    }
                                 }
                             }
                             else {//no encuentra el documento pero si deberia existir
