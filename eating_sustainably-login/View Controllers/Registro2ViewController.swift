@@ -19,7 +19,8 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var btnVideo: UIButton!
     @IBOutlet weak var btnContinuar: UIButton!
     @IBOutlet weak var lbValidar: UILabel!
-
+    @IBOutlet weak var tfLinkVideo: UITextField!
+        
     var placeholder : String = "Escribe tu historia personal"
 
     override func viewDidLoad() {
@@ -30,6 +31,7 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
         //ocultamos los campos segun el tipo de usuario
         if (Constantes.usuario.m_tipo == Constantes.USER_CONSUMIDOR || Constantes.usuario.m_tipo == Constantes.USER_INGENIERO){
             btnVideo.isHidden = true
+            tfLinkVideo.isHidden = true
             tfNombreNegocio.isHidden = true
             placeholder = "Información personal"
             btnContinuar.setTitle("Registrarse", for: .normal)
@@ -72,6 +74,7 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
         }
     }
     
+    
     // MARK: - Navigation
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if (!self.validar){
@@ -108,7 +111,7 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
                         //guardamos datos en variable usuario
                         Constantes.usuario.m_uid = result!.user.uid
                         Constantes.usuario.m_informacion = self.tfInformacion.text!
-                        Constantes.usuario.m_negocio = self.tfNombreNegocio.text!
+
 
 
                         //el registro en firebase es correcto guardamos usuario en base de datos
@@ -157,7 +160,8 @@ class Registro2ViewController: UIViewController, UITextViewDelegate {
             
             Constantes.usuario.m_informacion = self.tfInformacion.text!
             Constantes.usuario.m_negocio = self.tfNombreNegocio.text!
-
+            Constantes.usuario.m_video = self.tfLinkVideo.text! // ID del video en Constantes
+            
             let viewR3 = segue.destination as! Registro3ViewController
             viewR3.contraseña = self.contraseña
             viewR3.validar = self.validar

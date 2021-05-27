@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -202,13 +203,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-cq-afs">
-                                <rect key="frame" x="40" y="424" width="78" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Subir video">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AVS-cY-GJF">
                                 <rect key="frame" x="37" y="509" width="295" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -228,6 +222,19 @@
                                 <color key="textColor" systemColor="systemRedColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Link Video" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbB-qz-wmV">
+                                <rect key="frame" x="37" y="467" width="291" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QGA-cq-afs">
+                                <rect key="frame" x="143" y="429" width="78" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Subir video">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e37-Zv-feM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -238,12 +245,13 @@
                         <outlet property="btnVideo" destination="QGA-cq-afs" id="2tT-Xx-Aaw"/>
                         <outlet property="lbValidar" destination="Q0J-UD-unY" id="itK-sk-7Z0"/>
                         <outlet property="tfInformacion" destination="D6S-JK-JfX" id="JHZ-G6-vGp"/>
+                        <outlet property="tfLinkVideo" destination="FbB-qz-wmV" id="Wud-p4-zP6"/>
                         <outlet property="tfNombreNegocio" destination="9mD-xW-BgX" id="R3p-1M-aZw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="clW-vA-2Ly" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2222" y="1264"/>
+            <point key="canvasLocation" x="2221.5999999999999" y="1263.4182908545729"/>
         </scene>
         <!--Registro3 View Controller-->
         <scene sceneID="dFu-Ro-zaj">
@@ -642,13 +650,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Video" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMA-fl-xXL">
-                                <rect key="frame" x="16" y="383" width="343" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" text="historia" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="stN-bz-vdz">
                                 <rect key="frame" x="16" y="262" width="343" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -664,11 +665,6 @@
                                 <connections>
                                     <segue destination="hZ0-CP-mGr" kind="show" identifier="perfil_mapa" id="36s-Am-zTa"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uey-sA-bca">
-                                <rect key="frame" x="156" y="408" width="63" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="ver video"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btJ-6Q-tq3">
                                 <rect key="frame" x="278" y="578" width="81" height="30"/>
@@ -727,6 +723,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N2D-XE-YMg">
+                                <rect key="frame" x="155" y="438" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ver vídeo"/>
+                                <connections>
+                                    <segue destination="Oiz-IK-VgJ" kind="show" identifier="perfil_video" id="03k-53-TYs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="JoG-HC-d0K"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -740,7 +744,7 @@
                         <outlet property="btnModificar" destination="Orl-fg-9w5" id="Bf1-1q-GYI"/>
                         <outlet property="btnQR" destination="wiQ-Za-vxC" id="4bS-2n-gi0"/>
                         <outlet property="btnTienda" destination="OoA-32-zhV" id="h6P-C1-Yje"/>
-                        <outlet property="btnVideo" destination="Uey-sA-bca" id="jZX-XY-S5o"/>
+                        <outlet property="btnVideo" destination="N2D-XE-YMg" id="XAP-9W-MeY"/>
                         <outlet property="fotoPerfil" destination="glb-UD-FOQ" id="Kb0-5z-mi8"/>
                         <outlet property="historiaUsuario" destination="stN-bz-vdz" id="eOV-KO-bET"/>
                         <outlet property="lbCorreoUsuario" destination="2cf-c0-lqj" id="haZ-VL-vvu"/>
@@ -749,7 +753,6 @@
                         <outlet property="lbNombreUsuario" destination="jJ0-pZ-7UC" id="grZ-Da-tRd"/>
                         <outlet property="lbTelefono" destination="nsC-05-QnT" id="LkJ-zX-k1i"/>
                         <outlet property="lbTienda" destination="XJk-FW-YB8" id="ZZM-ds-4XM"/>
-                        <outlet property="lbVideo" destination="GMA-fl-xXL" id="fNC-Lg-NFk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O55-vz-qLP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -989,16 +992,16 @@
         <scene sceneID="E0q-yE-FRL">
             <objects>
                 <tableViewController id="gLH-FX-GQc" customClass="FeedTableViewController" customModule="eating_sustainably_login" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3z9-xf-d2a">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="333" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3z9-xf-d2a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedTableViewCell" id="foY-7e-55s" customClass="FeedTableViewCell" customModule="eating_sustainably_login" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="333"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="foY-7e-55s" id="YQV-KU-I5e">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="333"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1052,36 +1055,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3M-Uz-IqA">
-                                <rect key="frame" x="159" y="504" width="56" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write something..." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-ov-mnV">
+                                <rect key="frame" x="28" y="72" width="319" height="180"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <accessibility key="accessibilityConfiguration" hint="dfdfdffdf"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="5ES-cR-tEn"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q6G-p3-jxs">
+                                <rect key="frame" x="67" y="281" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="caG-Zz-BqQ"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pHp-cr-vUN">
+                                <rect key="frame" x="172" y="462" width="31" height="23"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Button">
+                                    <imageReference key="image" image="camera" catalog="system" symbolScale="large"/>
+                                </state>
+                                <connections>
+                                    <action selector="agregarFoto:" destination="wM7-6G-kWX" eventType="touchUpInside" id="rdx-wK-2ez"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3M-Uz-IqA">
+                                <rect key="frame" x="159" y="546" width="56" height="30"/>
                                 <state key="normal" title="Publicar"/>
                                 <connections>
                                     <action selector="publicar:" destination="wM7-6G-kWX" eventType="touchUpInside" id="afg-DJ-vT6"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-ov-mnV">
-                                <rect key="frame" x="20" y="44" width="319" height="180"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <accessibility key="accessibilityConfiguration" hint="dfdfdffdf"/>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="yes"/>
-                            </textView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="152-aV-HR2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ejm-ov-mnV" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="28" id="1gR-hH-rom"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="bottom" secondItem="M3M-Uz-IqA" secondAttribute="bottom" constant="42" id="6DJ-l4-ONz"/>
+                            <constraint firstItem="pHp-cr-vUN" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="172" id="CBJ-zF-qkn"/>
+                            <constraint firstItem="q6G-p3-jxs" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="67" id="ZI5-Vu-NcC"/>
+                            <constraint firstItem="q6G-p3-jxs" firstAttribute="top" secondItem="ejm-ov-mnV" secondAttribute="bottom" constant="29" id="krn-e9-WJB"/>
+                            <constraint firstItem="ejm-ov-mnV" firstAttribute="top" secondItem="152-aV-HR2" secondAttribute="top" constant="28" id="lNz-Rk-g13"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="pHp-cr-vUN" secondAttribute="trailing" constant="172" id="mNk-QH-0b5"/>
+                            <constraint firstItem="pHp-cr-vUN" firstAttribute="top" secondItem="q6G-p3-jxs" secondAttribute="bottom" constant="53" id="nuG-PR-SlA"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="q6G-p3-jxs" secondAttribute="trailing" constant="68" id="pS0-hr-Ml7"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="M3M-Uz-IqA" secondAttribute="trailing" constant="160" id="r4n-QI-7fT"/>
+                            <constraint firstItem="152-aV-HR2" firstAttribute="trailing" secondItem="ejm-ov-mnV" secondAttribute="trailing" constant="28" id="sfJ-0c-Cz6"/>
+                            <constraint firstItem="M3M-Uz-IqA" firstAttribute="leading" secondItem="152-aV-HR2" secondAttribute="leading" constant="159" id="uGc-2i-YNS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Iwy-7X-yca"/>
                     <connections>
+                        <outlet property="btnAgregarFoto" destination="pHp-cr-vUN" id="zhZ-PD-znw"/>
                         <outlet property="bttnPublicar" destination="M3M-Uz-IqA" id="qwm-lr-LrX"/>
+                        <outlet property="fotoPublicacion" destination="q6G-p3-jxs" id="xxq-fV-Exn"/>
                         <outlet property="tfPost" destination="ejm-ov-mnV" id="y3T-l3-U93"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jc9-XC-kKE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8017" y="-1091"/>
+            <point key="canvasLocation" x="8016.8000000000002" y="-1091.6041979010495"/>
         </scene>
         <!--Bloquear View Controller-->
         <scene sceneID="TeQ-JA-iiF">
@@ -1702,6 +1738,52 @@
             </objects>
             <point key="canvasLocation" x="3740" y="-376"/>
         </scene>
+        <!--Ver Video View Controller-->
+        <scene sceneID="jtB-WG-qGT">
+            <objects>
+                <viewController id="Oiz-IK-VgJ" customClass="VerVideoViewController" customModule="eating_sustainably_login" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="42X-Wl-eEM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Negocio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXd-37-yWf">
+                                <rect key="frame" x="28" y="70" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Dueno" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="olC-FM-Cbe">
+                                <rect key="frame" x="28" y="100" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p8N-jv-O7E">
+                                <rect key="frame" x="67" y="157" width="240" height="236"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="J2D-PE-xfj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3wa-6n-rWh"/>
+                    <connections>
+                        <outlet property="lbDueno" destination="olC-FM-Cbe" id="kLH-NO-q7T"/>
+                        <outlet property="lbNegocio" destination="gXd-37-yWf" id="Cfb-ms-g9I"/>
+                        <outlet property="video" destination="p8N-jv-O7E" id="pr2-dR-Sdb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PNx-uH-R58" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9245.6000000000004" y="1150.9745127436283"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="IHA-xn-jqR"/>
@@ -1711,6 +1793,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="avatarPerfil" width="200" height="200"/>
+        <image name="camera" catalog="system" width="128" height="94"/>
         <image name="fotoNoDisponible" width="282" height="300"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="location.fill" catalog="system" width="128" height="121"/>
