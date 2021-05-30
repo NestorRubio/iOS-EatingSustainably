@@ -51,9 +51,9 @@ class LogInViewController: UIViewController {
         let password = tfPassword.text!.trimmingCharacters(in: .whitespacesAndNewlines)
         
         //comprobar email
-        if (tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" || isValidPattern(tfEmail.text ?? "", tipo: Constantes.MAIL)) {
+        if (tfEmail.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" && isValidPattern(tfEmail.text ?? "", tipo: Constantes.MAIL)) {
             //comprobar password
-            if (tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" || isValidPattern(tfPassword.text ?? "", tipo: Constantes.PASSWORD)) {
+            if (tfPassword.text?.trimmingCharacters(in: .whitespacesAndNewlines) != "" && isValidPattern(tfPassword.text ?? "", tipo: Constantes.PASSWORD)) {
                 
                 //signin
                 Constantes.auth.signIn(withEmail: mail, password: password) { (result, error) in

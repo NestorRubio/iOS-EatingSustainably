@@ -79,13 +79,49 @@ class FeedTableViewController: UITableViewController {
                     debugPrint("Error al recuperar datos: \(err)")
                 }else{
                     guard let snap = snapshot else {return}
+                    var total = snap.count
                     for document in (snap.documents){
-                        
                         let post = FeedPost(withDoc: document)
-                        self.posts.append(post)
-                        
+
+                        Constantes.storage.child("fotosPerfil/"+post.uid+".png").getData(maxSize: 1 * 1024 * 1024){ data, error in
+                            if let error = error{
+                           print("Error in loading photo")
+                            post.fotoPerfil = UIImage(systemName: "avatarPerfil")
+                                total-=1
+                            }
+                            else{
+                                if let foto = UIImage(data: data!){
+                                    post.fotoPerfil = foto
+                                }
+                                else {
+                                    post.fotoPerfil = UIImage(systemName: "avatarPerfil")
+                                }
+                                
+                                Constantes.storage.child(post.postImage).getData(maxSize: 1 * 1024 * 1024){ data, error in
+                                    if let error = error{
+                                   print("Error in loading photo")
+                                        total-=1
+                                    post.fotoPub = UIImage(systemName: "fotoNoDisponible")
+                                    }
+                                    else{
+                                        if let foto = UIImage(data: data!){
+                                            post.fotoPub = foto
+                                        }
+                                        else {
+                                            post.fotoPub = nil
+                                        }
+                                        
+                                        self.posts.append(post)
+                                        //con if esperamos a tener todos, sino cargamos como vayan llegando
+                                        //if (total == self.posts.count){
+                                            self.posts.sort(by: { $0.timeStamp < $1.timeStamp })
+                                            self.tableView.reloadData()
+                                        //}
+                                    }
+                                }
+                            }
+                        }
                     }
-                    self.tableView.reloadData()
                 }
             }
         }

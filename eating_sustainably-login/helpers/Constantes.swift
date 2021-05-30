@@ -94,6 +94,7 @@ struct Constantes {
     static let PASSWORD_COINCIDE = 44
     static let ERROR_ACTUALIZAR_PASSWORD = 45
     static let ACTUALIZAR_PASSWORD_OK = 46
+    static let ERROR_FEED = 47
 
     static let DEFAULT = 99
     
@@ -307,6 +308,10 @@ func mostrarMsj(error: Int, hand : ((UIAlertAction)->Void)? = nil) -> UIAlertCon
         titulo = "Operación completada"
         mensaje = "Contraseña actualizada correctamente"
         break
+    case Constantes.ERROR_FEED:
+        mensaje = "El mensaje de la publicación no puede estar vacío"
+        break
+        
         
     case Constantes.DEFAULT:
         mensaje = "Error al procesar la operación, vuelve a intentarlo"

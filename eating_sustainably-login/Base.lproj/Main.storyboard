@@ -1568,20 +1568,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="titulo app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raM-B7-XRP">
-                                <rect key="frame" x="16" y="306" width="343" height="55"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="46"/>
-                                <color key="textColor" red="0.36292855010000002" green="0.4797623754" blue="0.40167666819999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="69" translatesAutoresizingMaskIntoConstraints="NO" id="Y41-Vs-HK3">
+                                <rect key="frame" x="20" y="120" width="335" height="357"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titulo app" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raM-B7-XRP">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="46"/>
+                                        <color key="textColor" red="0.36292855010000002" green="0.4797623754" blue="0.40167666819999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JfI-Hi-ayE">
+                                        <rect key="frame" x="0.0" y="124" width="335" height="233"/>
+                                        <string key="text">eating sustainably ha sido desarrollado por estudiantes del Tecnológico de Monterrey durante el semestre Febrero Junio 2021, como parte del curso Desarrollo de Aplicaciones para Dispositivos Móviles y asesorados por la maestra Yolanda Martínez Treviño.Desarrolladores:Rodrigo Gelacio Torres VelascoNéstor Karim Rubio LópezEnrique Elizondo VillegasDaniel Pardo Navarroeating sustainably se distribuye como está de manera gratuita y se prohíbe su distribución y uso con fines de lucro.</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="B1K-0X-qfL"/>
                         <color key="backgroundColor" red="0.80964467005076135" green="0.66019215553624611" blue="0.27616320550857454" alpha="0.84705882352941175" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="B1K-0X-qfL" firstAttribute="bottom" secondItem="raM-B7-XRP" secondAttribute="bottom" id="Y2I-nU-hRR"/>
-                            <constraint firstItem="raM-B7-XRP" firstAttribute="leading" secondItem="B1K-0X-qfL" secondAttribute="leading" id="Zmk-f1-WlE"/>
-                            <constraint firstItem="raM-B7-XRP" firstAttribute="top" secondItem="B1K-0X-qfL" secondAttribute="top" id="d4S-Z1-IHb"/>
-                            <constraint firstItem="B1K-0X-qfL" firstAttribute="trailing" secondItem="raM-B7-XRP" secondAttribute="trailing" id="jYR-je-b5A"/>
+                            <constraint firstItem="Y41-Vs-HK3" firstAttribute="leading" secondItem="B1K-0X-qfL" secondAttribute="leading" constant="20" id="7JV-Ng-uLk"/>
+                            <constraint firstItem="Y41-Vs-HK3" firstAttribute="top" secondItem="B1K-0X-qfL" secondAttribute="top" constant="120" id="HPX-10-mno"/>
+                            <constraint firstAttribute="trailing" secondItem="Y41-Vs-HK3" secondAttribute="trailing" constant="20" id="YYi-im-7Op"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1590,7 +1601,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tf2-xO-qDB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1076" y="124"/>
+            <point key="canvasLocation" x="-1076" y="123.68815592203899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SG7-f7-IeE">

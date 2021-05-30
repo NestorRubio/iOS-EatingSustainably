@@ -16,6 +16,8 @@ class FeedPost{
     var timeStamp : Date
     var postImage : String
     var uid : String
+    var fotoPerfil : UIImage!
+    var fotoPub : UIImage!
     
    /* init(author : String, content : String, likes : Int, timeStamp: Date) {
         self.author = author

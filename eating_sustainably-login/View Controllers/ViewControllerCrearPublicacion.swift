@@ -56,6 +56,10 @@ class ViewControllerCrearPublicacion: UIViewController, UITextViewDelegate, UIIm
     }
     
     @IBAction func publicar(_ sender: UIButton) {
+        if (tfPost.text == "" || tfPost.text == self.placeholder) {
+            self.present(mostrarMsj(error: Constantes.ERROR_FEED), animated: true, completion: nil)
+            return
+        }
         let date = Date();
         let format = DateFormatter();
         format.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -85,7 +89,7 @@ class ViewControllerCrearPublicacion: UIViewController, UITextViewDelegate, UIIm
             
         }
         else{
-            referencia.setData(["likes": 0, "name": Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido! , "post": self.tfPost.text!,"timestamp": timestamp, "foto": "nil", "uid": Constantes.usuario.m_uid])
+            referencia.setData(["likes": 0, "name": Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido! , "post": self.tfPost.text!,"timestamp": timestamp, "foto": "", "uid": Constantes.usuario.m_uid])
         }
                 
         //db.collection("posts").addDocument(data: ["likes": 0, "name": Constantes.usuario.m_nombre! + " " + Constantes.usuario.m_apellido! , "post": tfPost.text!,"timestamp": timestamp])
